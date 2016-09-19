@@ -1,4 +1,4 @@
-# [Android WebViews](http://cordova.apache.org/docs/en/3.3.0/guide/platforms/android/webview.html)
+# [Android Web视图](http://cordova.apache.org/docs/en/3.3.0/guide/platforms/android/webview.html)
 
 　　这一节展示在一个更大的Android应用程序里如何嵌入一个Cordova-enabled WebView 组件。 有关这些组件之间如果能沟通的详细说明，
 请看应用程序插件。
