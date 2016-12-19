@@ -1,0 +1,1 @@
+进入ng2+ionic2的坑，公司项目有多个环境。［angularCli](https://github.com/angular/angular-cli#build-targets-and-environment-files)的文档说明不是很明确，找了好多资料，然后搞懂怎么配置。
