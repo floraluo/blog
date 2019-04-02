@@ -8,3 +8,5 @@
   - [ionic2+angula2+angular-cli踩的坑总结](https://github.com/floraluo/blog/blob/master/Angular2/%E8%AE%B0%E5%BD%95ionic2%2Bangular-cli%E8%B8%A9%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91.md)
 
 - [http缓存](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)
+- Vue
+  - vue添加监听方式
