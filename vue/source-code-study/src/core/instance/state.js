@@ -191,6 +191,7 @@ function initComputed (vm: Component, computed: Object) {
     }
 
     if (!isSSR) {
+      // 不是服务端渲染时
       // create internal watcher for the computed property.
       watchers[key] = new Watcher(
         vm,
