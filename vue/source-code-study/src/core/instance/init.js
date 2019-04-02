@@ -49,11 +49,14 @@ export function initMixin (Vue: Class<Component>) {
     }
     // expose real self
     vm._self = vm
+    // 初始化生命周期相关变量
     initLifecycle(vm)
     initEvents(vm)
+    // 初始化Vue渲染阶段相关实例方法及属性（$attrs, $listeners）
     initRender(vm)
     callHook(vm, 'beforeCreate')
     initInjections(vm) // resolve injections before data/props
+    // 实例相关属性初始化（data,props,computed,watch,method）
     initState(vm)
     initProvide(vm) // resolve provide after data/props
     callHook(vm, 'created')
@@ -65,6 +68,7 @@ export function initMixin (Vue: Class<Component>) {
       measure(`vue ${vm._name} init`, startTag, endTag)
     }
 
+    // 指定了el进入渲染阶段，若没指定el会解析template，变成一个render函数添加到实例上
     if (vm.$options.el) {
       vm.$mount(vm.$options.el)
     }
