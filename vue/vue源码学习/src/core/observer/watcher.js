@@ -56,9 +56,9 @@ export default class Watcher {
     vm._watchers.push(this)
     // options
     if (options) {
-      this.deep = !!options.deep
-      this.user = !!options.user
-      this.lazy = !!options.lazy
+      this.deep = !!options.deep //深层次监听
+      this.user = !!options.user //用户调用标识符
+      this.lazy = !!options.lazy //服务端渲染时，计算属性computed设置lazy:true延迟执行watcher的get方法
       this.sync = !!options.sync
       this.before = options.before
     } else {
@@ -76,10 +76,14 @@ export default class Watcher {
       ? expOrFn.toString()
       : ''
     // parse expression for getter
+
+    // 将expOrFn存watcher.getter属性里，
+    // 下一次更新时，通过run方法调用this.get()时，
+    // 直接执行watcher自己getter属性上存的方法
     if (typeof expOrFn === 'function') {
-      this.getter = expOrFn
+      this.getter = expOrFn  //渲染watcher 调用updateComponent()
     } else {
-      this.getter = parsePath(expOrFn)
+      this.getter = parsePath(expOrFn) //解析表达式（初始化watch属性时，key传给expOrFn），获取表达式指定的函数
       if (!this.getter) {
         this.getter = noop
         process.env.NODE_ENV !== 'production' && warn(
@@ -103,6 +107,7 @@ export default class Watcher {
     let value
     const vm = this.vm
     try {
+      // 执行存在getter上的方法
       value = this.getter.call(vm, vm)
     } catch (e) {
       if (this.user) {

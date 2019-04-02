@@ -3,7 +3,7 @@
         "data": {
             "id": "bt38wgh6yi00",
             "created": 1554197129297,
-            "text": "创建监听"
+            "text": "new Watcher(vm, expOrFn, cb, options)"
         },
         "children": [
             {
@@ -19,8 +19,12 @@
                         "data": {
                             "id": "bt38yoxwtb40",
                             "created": 1554197304450,
-                            "text": "expOrFn：watch属性对象的key；\n cb: watch对象属性对应key的value（opts.watch[key]）",
-                            "layout": null
+                            "text": "expOrFn：watch属性对象的key；\n cb: watch对象属性对应key的value（opts.watch[key]）;",
+                            "layout": null,
+                            "layout_bottom_offset": {
+                                "x": -0.5,
+                                "y": -11
+                            }
                         },
                         "children": []
                     }
@@ -38,7 +42,7 @@
                         "data": {
                             "id": "bt38yw17veo0",
                             "created": 1554197319888,
-                            "text": "expOrFn: updateComponent方法;\ncb：noop",
+                            "text": "expOrFn: updateComponent方法;\ncb：noop;\noptions: 设置beforeUpdate生命周期的函数",
                             "layout": null
                         },
                         "children": []
@@ -56,8 +60,8 @@
             }
         ]
     },
-    "template": "right",
-    "theme": "classic-compact",
+    "template": "structure",
+    "theme": "fresh-purple",
     "version": "1.4.43",
     "id": "bt38wgh6yi00"
 }
