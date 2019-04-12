@@ -1,0 +1,447 @@
+{
+    "root": {
+        "data": {
+            "id": "btbohdyj6ww0",
+            "created": 1555053565764,
+            "text": "跨域解决方案"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "btbohlb1d480",
+                    "created": 1555053581758,
+                    "text": "图像ping",
+                    "priority": null,
+                    "note": "动态创建图像"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbohu94yc00",
+                            "created": 1555053601234,
+                            "text": "优点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbohzsh5vs0",
+                                    "created": 1555053613287,
+                                    "text": "以查询字符串形式发送请求，响应可以是任意内\n容，但通常是像素图或者204响应"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btboi99puhs0",
+                                    "created": 1555053633921,
+                                    "text": "可以通过监听load和error事件知道什么时候接收到响应"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btboiqwsdbc0",
+                            "created": 1555053672321,
+                            "text": "缺点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btboisnnz140",
+                                    "created": 1555053676123,
+                                    "text": "只能发送GET请求"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btboiwckcko0",
+                                    "created": 1555053684159,
+                                    "text": "无法访问服务器的响应文本，只能和服务器单向通信"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btboj8u45yg0",
+                            "created": 1555053711342,
+                            "text": "用途"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btboja6xp7s0",
+                                    "created": 1555053714294,
+                                    "text": "跟踪用户点击页面或动态广告曝光次数"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btbola4f0y00",
+                    "created": 1555053870870,
+                    "text": "jsonp",
+                    "priority": null,
+                    "note": "### 1.原生写法\n``` javascript\n<script>\n    var script = document.createElement('script');\n    script.type = 'text/javascript';\n\n    // 传参并指定回调执行函数为onBack\n    script.src = 'http://www.domain2.com:8080/loginuser=admin&callback=onBack';\n    document.head.appendChild(script);\n\n    // 回调执行函数\n    function onBack(res) {\n        alert(JSON.stringify(res));\n    }\n</script>\n```\n服务端返回如下（返回时即执行全局函数）：\n```\nonBack({\"status\": true, \"user\": \"admin\"})\n```\n### 2.使用promise方法\n```\nfunction jsonp({ url, params, callback }) {\n  return new Promise((resolve, reject) => {\n    let script = document.createElement('script’);\n\t//因为回调函数必须是全局函数，所以注册在window对象上\n    window[callback] = function(data) {\n      resolve(data)\n      document.body.removeChild(script)\n    }\n    params = { ...params, callback } // wd=b&callback=show\n    let arrs = []\n    for (let key in params) {\n      arrs.push(`${key}=${params[key]}`)\n    }\n    script.src = `${url}?${arrs.join('&')}`\n    document.body.appendChild(script)\n  })\n}\njsonp({\n  url: 'http://localhost:3000/say',\n  params: { wd: 'Iloveyou' },\n  callback: 'show'\n}).then(data => {\n  console.log(data)\n})\n```"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbole453u00",
+                            "created": 1555053879560,
+                            "text": "优点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbols99ecg0",
+                                    "created": 1555053910345,
+                                    "text": "兼容性好"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbolvnob800",
+                                    "created": 1555053917747,
+                                    "text": "不受同源策略的限制"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbolycd1wg0",
+                                    "created": 1555053923593,
+                                    "text": "能直接访问响应文本，支持在浏览器与服务器之间双向通信"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btbolf6ntao0",
+                            "created": 1555053881889,
+                            "text": "缺点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbom7zpkxc0",
+                                    "created": 1555053944596,
+                                    "text": "只支持GET请求"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbominp8y80",
+                                    "created": 1555053967814,
+                                    "text": "不能设置请求头"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbomnfg8ww0",
+                                    "created": 1555053978199,
+                                    "text": "无法获知请求失败的消息"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbomt7iwk80",
+                                    "created": 1555053990781,
+                                    "text": "不能设置请求超时与重置"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbomxjepbc0",
+                                    "created": 1555054000206,
+                                    "text": "要等待所有填充数据返回后才能访问"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbon1fvb2w0",
+                                    "created": 1555054008700,
+                                    "text": "不安全，可能会遭受XSS攻击"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btbonp5g55s0",
+                    "created": 1555054060312,
+                    "text": "CORS",
+                    "priority": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbp1rc80680",
+                            "created": 1555055162174,
+                            "text": "优点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbp1xtz6sw0",
+                                    "created": 1555055176308,
+                                    "text": "支持所有类型http请求"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp1z9qj000",
+                                    "created": 1555055179438,
+                                    "text": "可以被XMLHttpRequest对象的onerror事件监听错误\n（错误不能通过状态码识别，http响应的状态码有可能是200）"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp2atxi4o0",
+                                    "created": 1555055204603,
+                                    "text": "浏览器控制台可以看到错误信息"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btbp1sli7k00",
+                            "created": 1555055164912,
+                            "text": "缺点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbp3dbregg0",
+                                    "created": 1555055288399,
+                                    "text": "IE10以下不支持"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp3hs0hgw0",
+                                    "created": 1555055298089,
+                                    "text": "复杂请求会发送两次请求，第一次是option预检请求"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp3la5u140",
+                                    "created": 1555055305717,
+                                    "text": "需要服务端配合，前端不能独立完成"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btbonxiynd40",
+                    "created": 1555054078544,
+                    "text": "Node中间件代理",
+                    "priority": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbp3pty1ls0",
+                            "created": 1555055315620,
+                            "text": "优点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbp3v2akqo0",
+                                    "created": 1555055327009,
+                                    "text": "前端能独立解决跨域问题，不依赖后端"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btbp3rp9xj40",
+                            "created": 1555055319691,
+                            "text": "缺点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbp42886xk0",
+                                    "created": 1555055342605,
+                                    "text": "只能适用于开发环境，生产环境中需使用反向代理"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btboo3a3bk00",
+                    "created": 1555054091068,
+                    "text": "反向代理"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbp4c5qvbc0",
+                            "created": 1555055364223,
+                            "text": "优点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbp4gl71200",
+                                    "created": 1555055373864,
+                                    "text": "充当防火墙，防止外网对内网服务器进行攻击"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp4m6xb4g0",
+                                    "created": 1555055386062,
+                                    "text": "缓存，减少目标服务器压力"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp4q9rom80",
+                                    "created": 1555055394941,
+                                    "text": "可以进行负载均衡，将用户请求分配给多个服务器"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btboo7xlxk00",
+                    "created": 1555054101197,
+                    "text": "postMessage"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbp4yilw7k0",
+                            "created": 1555055412890,
+                            "text": "用途"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btbp504ml540",
+                                    "created": 1555055416398,
+                                    "text": "页面和其打开的新窗口的数据传递"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp54qw1yo0",
+                                    "created": 1555055426451,
+                                    "text": "多窗口之间消息传递"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp58f8tko0",
+                                    "created": 1555055434454,
+                                    "text": "页面与嵌套的iframe消息传递"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btbp5c7roao0",
+                                    "created": 1555055442709,
+                                    "text": "上面三个场景的跨域数据传递"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btboobplz800",
+                    "created": 1555054109421,
+                    "text": "webscoket"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "btboog4oevc0",
+                    "created": 1555054119039,
+                    "text": " location.hash + iframe"
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "btbookp61u00",
+                    "created": 1555054128985,
+                    "text": "document.domain + iframe"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btbp5gtgvs00",
+                            "created": 1555055452729,
+                            "text": "仅限主域相同，子域不同的跨域应用场景。原理：两个\n页面都通过js强制设置document.domain为基础主\n域，就实现了同域"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btbooo9zjww0",
+                    "created": 1555054136774,
+                    "text": " window.name + iframe"
+                },
+                "children": []
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-green-compat",
+    "version": "1.4.43",
+    "id": "btbohdyj6ww0"
+}
