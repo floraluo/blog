@@ -1,6 +1,8 @@
 ## Launch.json attributes
 有许多`launch.json`的属性来支持不同的调试和调试场景。只要你指定了`type`的值，就可以使用智能感知（IntelliSense **`^Space`**）功能来查看可用属性的列表。
+
 ![launch-json-suggestions](https://github.com/floraluo/blog/blob/master/%E7%BF%BB%E8%AF%91/image/vscode/launch-json-suggestions.png)
+
 **每个启动配置都必须具有以下属性：**
 
 - `type` - 用于此启动配置的调试器类型。每个安装的调试扩展都会引入一种类型，例如，node内置节点调试器，php以及goPHP和Go扩展。
