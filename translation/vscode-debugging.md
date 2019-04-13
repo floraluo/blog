@@ -6,11 +6,11 @@
 
 在VS Code中打开你项目目录（**File** > **Open Folder**）然后在Debug视图顶部选择齿轮图标来创建一个`launch.json`文件。
 
-![launch-configuration.png](https://github.com/floraluo/blog/tree/master/translation/image/vscode/launch-configuration.png)
+![launch-configuration.png](https://github.com/floraluo/blog/blob/master/translation/image/vscode/launch-configuration.png)
 
 VS Code将会自动检查你的调试环境，如果失败，你就不得不手动选择了：
 
-![debug-environments.png](https://github.com/floraluo/blog/tree/master/translation/image/vscode/debug-environments.png)
+![debug-environments.png](https://github.com/floraluo/blog/blob/master/translation/image/vscode/debug-environments.png)
 
 这是调试Node.js生成的启动配置：
 
@@ -56,7 +56,7 @@ VS Code通常在调试模式中支持启动一个应用还是连接到一个已�
 - 点击`Add Configuration`按钮，在数组起始位置调用智能感知片段
 - 在Debug菜单中选择`Add Configuration`选项
 
-![add-config.gif](https://github.com/floraluo/blog/tree/master/translation/image/vscode/add-config.gif)
+![add-config.gif](https://github.com/floraluo/blog/blob/master/translation/image/vscode/add-config.gif)
 
 VS Code也支持在同一时间启动多个配置的混合启动配置。想了解更详细的信息，查看这个[Compound launch configurations](https://code.visualstudio.com/docs/editor/debugging#_compound-launch-configurations)章节
 
@@ -66,17 +66,17 @@ VS Code也支持在同一时间启动多个配置的混合启动配置。想了�
 
 只要启动了调试会话，**调试控制台**面板会显示出来并展示调试输出信息，状态栏也会改变颜色（橘色是默认的主题色）：
 
-![debug-session.png](https://github.com/floraluo/blog/tree/master/translation/image/vscode/debug-session.png)
+![debug-session.png](https://github.com/floraluo/blog/blob/master/translation/image/vscode/debug-session.png)
 
 另外，**调试状态**出现在状态栏显示正在调试配置的名称。通过选择调试状态，你可以改变正启动的配置并且不需要打开Debug视图启动新的调试。
 
-![debug-status](https://github.com/floraluo/blog/tree/master/translation/image/vscode/debug-status.png)
+![debug-status](https://github.com/floraluo/blog/blob/master/translation/image/vscode/debug-status.png)
 
 ## Launch.json attributes
 
 有许多`launch.json`的属性来支持不同的调试和调试场景。只要你指定了`type`的值，就可以使用智能感知（IntelliSense **`^Space`**）功能来查看可用属性的列表。
 
-![launch-json-suggestions](https://github.com/floraluo/blog/tree/master/translation/image/vscode/launch-json-suggestions.png)
+![launch-json-suggestions](https://github.com/floraluo/blog/blob/master/translation/image/vscode/launch-json-suggestions.png)
 
 **每个启动配置都必须具有以下属性：**
 
