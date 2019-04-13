@@ -1,4 +1,5 @@
 ## Launch.json attributes
+
 有许多`launch.json`的属性来支持不同的调试和调试场景。只要你指定了`type`的值，就可以使用智能感知（IntelliSense **`^Space`**）功能来查看可用属性的列表。
 
 ![launch-json-suggestions](https://github.com/floraluo/blog/blob/master/%E7%BF%BB%E8%AF%91/image/vscode/launch-json-suggestions.png)
@@ -26,3 +27,21 @@
 - `port` - 附加到正在运行程序的端口
 - `stopOnEntry` - 这个程序启动时立即中断
 - `console` - 使用什么种类的控制台，例如，`internalConsole`,`integratedTerminal`,`externalTerminal`
+
+
+## Variable substitution
+
+vscode生成常用的路径和其他可用的值作为变量，支持在`launch.json`文件中的字符串内变量替换。意味着在调试配置中非必须使用绝对路径。例如，`${workspaceFolder}`表示工作区文件夹的根路径，`${file}`表示在活动编辑器中打开的文件，`${env:Name}`表示‘Name’环境变量。在[Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference)中可以看到所有预定义变量列表，或者在`launch.json`字符串属性调用IntelliSense。
+
+``` json
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Launch Program",
+    "program": "${workspaceFolder}/app.js",
+    "cwd": "${workspaceFolder}",
+    "args": [ "${env:USERNAME}" ]
+}
+```
+
+  ### Variables Reference
