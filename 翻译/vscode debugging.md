@@ -46,7 +46,7 @@ Vs Code中，有两种核心调试模式，**Launch**和**Attach**，它们处�
 
 解释**Launch**和**Attach**的不同最好的方法是,VS Code连接应用之前在调试模式中怎样启动应用是**lanuch**配置，怎样连接VS Code调试器到已经运行的应用或程序是**attach**配置。
 
-VS Code通常支持在调试模式中启动一个应用还是连接到一个已经运行的程序。这取决于`request`属性的值是`launch`还是`attach`,
+VS Code通常在调试模式中支持启动一个应用还是连接到一个已经运行的程序。这取决于`request`属性的值是`launch`还是`attach`,VS Code的`launch.json`的验证和建议应该会有一些帮助。
 
 ### Add a new configuration
 
