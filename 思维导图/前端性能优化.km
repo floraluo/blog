@@ -1,0 +1,406 @@
+{
+    "root": {
+        "data": {
+            "id": "btboh07iark0",
+            "created": 1555053535832,
+            "text": "前端性能优化"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "btdbhb82few0",
+                    "created": 1555220005295,
+                    "text": "网络通信"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btdbhgojvf40",
+                            "created": 1555220017176,
+                            "text": "DNS优化"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btdbhlwva0g0",
+                            "created": 1555220028563,
+                            "text": "http请求优化"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdbi25nycg0",
+                                    "created": 1555220063923,
+                                    "text": "减少请求量"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbif9n3hc0",
+                                            "created": 1555220092462,
+                                            "text": "合并js和css静态资源"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbit1mi4w0",
+                                            "created": 1555220122452,
+                                            "text": "使用data:url模式内联图片无需http请求"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdbkg2gza00",
+                                                    "created": 1555220250933,
+                                                    "text": "data:url内联在页面中时，不同页面之间切\n换不会被缓存，所以最好使用外部样式表\ncss背景图片，靠缓存样式表达到缓存图片目的"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbj5t96e00",
+                                            "created": 1555220150244,
+                                            "text": "CSS Sprites"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbja91edc0",
+                                            "created": 1555220159905,
+                                            "text": "使用font-icon字体图标"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbjnivwv40",
+                                            "created": 1555220188799,
+                                            "text": "图片懒加载（主要减少首屏渲染时间）"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbjtpsg4w0",
+                                            "created": 1555220202277,
+                                            "text": "设置http请求缓存"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbi7fq9540",
+                                    "created": 1555220075415,
+                                    "text": "减轻请求数据大小"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbkwtq87s0",
+                                            "created": 1555220287410,
+                                            "text": "压缩静态资源（css,js,image）"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbld0pxug0",
+                                            "created": 1555220322661,
+                                            "text": "服务器动态响应缩放裁剪图片"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdblrhny9k0",
+                                            "created": 1555220354161,
+                                            "text": "优化cookie"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdblw2kkkg0",
+                                                    "created": 1555220364132,
+                                                    "text": "去掉无用的cookie，如果网页不需要cookie就完全禁掉"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdbm4cpd0g0",
+                                                    "created": 1555220382159,
+                                                    "text": "将cookie的大小减到最小：每次发送http请求\n到对应域名时，cookie都会被发送"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdbmbonvs00",
+                                                    "created": 1555220398119,
+                                                    "text": "减少cookie的使用：静态资源使用不同的domain\n来存储"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdbmfkj1ww0",
+                                                    "created": 1555220406577,
+                                                    "text": "设置合适的过期时间，比较长的过期时间可以提\n高响应速度"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdbhrj09vs0",
+                            "created": 1555220040785,
+                            "text": "使用CDN加速器"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdbn5vsl540",
+                                    "created": 1555220463855,
+                                    "text": "优点"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbnblg5c00",
+                                            "created": 1555220476289,
+                                            "text": "缩短响应时间"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbnx9qsfk0",
+                                            "created": 1555220523471,
+                                            "text": "备份、扩展存储能力、进行缓存"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdboypx1mg0",
+                                            "created": 1555220604990,
+                                            "text": "有助于缓和web流量峰值压力"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbn7n0uco0",
+                                    "created": 1555220467677,
+                                    "text": "缺点"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbpectco00",
+                                            "created": 1555220639026,
+                                            "text": "响应时间可能会受到其他网站流量的影响"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btddgtf8ejk0",
+                                            "created": 1555225608766,
+                                            "text": "无法直接控制组件服务器所带来的特殊麻烦。例如：\n修改HTTP响应头必须由服务提供商完成；如果CDN\n服务性能下降，随之也会影响到自己的工作质量"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btdbhdhomco0",
+                    "created": 1555220010230,
+                    "text": "渲染"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btddhxq2wxs0",
+                            "created": 1555225696493,
+                            "text": "html"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btddilsosd40",
+                                    "created": 1555225748894,
+                                    "text": "css样式表置顶"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btddiqralk00",
+                                    "created": 1555225759693,
+                                    "text": "Js脚本置底"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btdditjmhs80",
+                                    "created": 1555225765760,
+                                    "text": "使用外部css、js文件"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btddiwg1al40",
+                                    "created": 1555225772073,
+                                    "text": "减少dom访问"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btddiy4mvz40",
+                                    "created": 1555225775738,
+                                    "text": "最好不要给元素使用style属性"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btddif0g57k0",
+                            "created": 1555225734126,
+                            "text": "css"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btddj9dnwr40",
+                                    "created": 1555225800228,
+                                    "text": "浏览器解析css是逆向解析，所以选择器嵌套最好不要超过三层"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btddjeg2ikw0",
+                                    "created": 1555225811258,
+                                    "text": "使用class名操作元素的样式和动画，避免使用js，因为元素的style属性改变会引起replow"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btddjhks5iw0",
+                                    "created": 1555225818073,
+                                    "text": "有动画的元素使用绝对定位或固定定位，使其脱离文档流"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btddjkli1nk0",
+                                    "created": 1555225824647,
+                                    "text": "在可视区域外的元素或者页面滚动时，尽量停止动画"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btddi073cyw0",
+                            "created": 1555225701876,
+                            "text": "js"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btddk2kkfm80",
+                                    "created": 1555225863772,
+                                    "text": "减少操作dom"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btddkyv9xs00",
+                                            "created": 1555225934077,
+                                            "text": "对dom元素进行增加、删除、修改操作都会引起reflow/repaint"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btddl2saitk0",
+                                            "created": 1555225942603,
+                                            "text": "避免不了操作dom时要注意将HtmlCollection类型的\n集合转成Array再操作。因为这个集合并不是一个静\n态结果，它表示的仅仅是一个特定的查询，每次访\n问该集合时都会重新执行这个查询从而更新查询结\n果。所谓的 “访问集合” 包括读取集合的 length属\n性、访问集合中的元素。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btddl4sm3800",
+                                            "created": 1555225946976,
+                                            "text": "需要大量添加dom元素时，使用DocumentFragment\n文档碎片方法；或者先设置元素display：none；待\n元素更新完时，再重新显示"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btddk644w0w0",
+                                    "created": 1555225871486,
+                                    "text": "减少作用域链查找"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btddltqfysw0",
+                                            "created": 1555226001265,
+                                            "text": "将全局变量赋值给局部变量"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btddk801b7s0",
+                                    "created": 1555225875591,
+                                    "text": "拼接字符串较多时，考虑使用array，然后使用array的\njoin方法得到字符串结果。因为\"+\" 号来拼接字符串\n效率是比较低的，因为每次运行都会开辟新的内存\n并生成新的字符串变量，然后将拼接结果赋值给新变量"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-blue-compat",
+    "version": "1.4.43",
+    "id": "btboh07iark0"
+}

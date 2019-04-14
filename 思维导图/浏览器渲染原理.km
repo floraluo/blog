@@ -1,0 +1,906 @@
+{
+    "root": {
+        "data": {
+            "id": "btdansaiz6o0",
+            "created": 1555217691524,
+            "text": "浏览器渲染原理",
+            "font-weight": "bold"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "btdaobu3zqg0",
+                    "created": 1555217734067,
+                    "text": "网络通信"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btdaomvtlds0",
+                            "created": 1555217758115,
+                            "text": "DNS解析",
+                            "font-weight": "bold"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdapn1i3dk0",
+                                    "created": 1555217836823,
+                                    "text": "1.浏览器搜索自身dns缓存"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btdaprqyhm00",
+                                    "created": 1555217847069,
+                                    "text": "2.查看系统本地DNS缓存"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btdapvb95mg0",
+                                    "created": 1555217854827,
+                                    "text": "3.路由器缓存"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btdapy6o2s00",
+                                    "created": 1555217861080,
+                                    "text": "4.ISP（网络服务商）"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdaow6ydug0",
+                            "created": 1555217778380,
+                            "text": "获取端口"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btdap1qsxt40",
+                            "created": 1555217790464,
+                            "text": "TCP三次握手"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btdap73niow0",
+                            "created": 1555217802125,
+                            "text": "建立TCP连接后发起http 请求"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdaq8egwrk0",
+                                    "created": 1555217883319,
+                                    "text": "通信方式"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdaqb8n8yg0",
+                                            "created": 1555217889498,
+                                            "text": "ajax"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaqi77lug0",
+                                            "created": 1555217904648,
+                                            "text": "form表单"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaqlm217c0",
+                                            "created": 1555217912076,
+                                            "text": "web socket"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaqpcnva00",
+                                            "created": 1555217920216,
+                                            "text": "server-sent-event"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaqsw7g4g0",
+                                            "created": 1555217927928,
+                                            "text": "<a href=“url”></a>"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaqwevq740",
+                                            "created": 1555217935587,
+                                            "text": "location.href=“url”"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdar05mzxc0",
+                                            "created": 1555217943735,
+                                            "text": "浏览器解析html时，识别到<link>与<script>时"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdapasx6jk0",
+                            "created": 1555217810183,
+                            "text": "服务端解析http请求，向客户端发送响应报文"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btdapdyjoh40",
+                            "created": 1555217817053,
+                            "text": "关闭连接，浏览器解析文档进行页面渲染"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btdaoe41k3s0",
+                    "created": 1555217739021,
+                    "text": "页面渲染"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btdardtirfk0",
+                            "created": 1555217973478,
+                            "text": "解析HTML"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdas3g4pqo0",
+                                    "created": 1555218029264,
+                                    "text": "标记化（状态机）是一个循环过程"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdasj288kw0",
+                                            "created": 1555218063252,
+                                            "text": "Data state"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaso4a3vs0",
+                                            "created": 1555218074260,
+                                            "text": "“<” Tag open state"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdasra182g0",
+                                            "created": 1555218081138,
+                                            "text": "“a-z” Tag name state"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdasub8nnk0",
+                                            "created": 1555218087742,
+                                            "text": "“>” 当前完成一个标记"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdas7py4680",
+                                    "created": 1555218038565,
+                                    "text": "构造DOM树"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdat7g83hc0",
+                                            "created": 1555218116341,
+                                            "text": "initial mode"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdatc4pfuo0",
+                                            "created": 1555218126529,
+                                            "text": "<html>标记 before html"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdatgqgwhs0",
+                                            "created": 1555218136552,
+                                            "text": "<body>标记 before head"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdau3jh3ig0",
+                                                    "created": 1555218186195,
+                                                    "text": "标记化过程中没有head 标记，会\n隐式创建一个<head>标记添加到树中"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "btdauebjg680",
+                                                            "created": 1555218209660,
+                                                            "text": "In head"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "btdaugnnwxc0",
+                                                            "created": 1555218214746,
+                                                            "text": "After head"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdatmynz340",
+                                            "created": 1555218150108,
+                                            "text": "In body"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdav5gexdk0",
+                                                    "created": 1555218268728,
+                                                    "text": "字符标记的一个字符串例如“hello world”，第一个\n字符“h”会导致创建一个text 节点，并且字\n符“h”会插入到节点中，剩下的字符“ello world”\n也插入到节点中"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdatti7ihk0",
+                                            "created": 1555218164350,
+                                            "text": "</body>标记. after body"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdatwnwlco0",
+                                            "created": 1555218171225,
+                                            "text": "</html>标记 after after body"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdasantsrs0",
+                                    "created": 1555218044967,
+                                    "text": "解析器遇到<script>标签会阻塞解析过程"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdavparid40",
+                                            "created": 1555218311922,
+                                            "text": "如果是内部脚本，HTML解析暂停，等待脚本执行完毕\n再继续解析"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdavvtpofk0",
+                                            "created": 1555218326128,
+                                            "text": "如果是外部脚本，HTML解析暂停，等待资源从网络获\n取成功后并执行完毕再继续解析"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdaw43seyo0",
+                                            "created": 1555218344152,
+                                            "text": "<script defer> 获取资源时不阻塞解析，DOM构建完\n成时，触发DOMContentLoaded事件之前按序执\n行脚本文件"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdawbo75bc0",
+                                            "created": 1555218360623,
+                                            "text": "<script async> 获取资源不阻塞解析，获取成功时立即\n执行脚本并阻塞解析。脚本文件执行无序，谁先下\n载完谁先执行"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdarkgbtpc0",
+                            "created": 1555217987917,
+                            "text": "解析css"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdaxg09ark0",
+                                    "created": 1555218448424,
+                                    "text": "CSS StyleSheet Object"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdb07e1ky80",
+                                            "created": 1555218664759,
+                                            "text": "CSS rule object"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdb0dqjfjk0",
+                                                    "created": 1555218678575,
+                                                    "text": "选择器"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdb0guezz40",
+                                                    "created": 1555218685340,
+                                                    "text": "样式声明"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdaxv4s0zc0",
+                                    "created": 1555218481349,
+                                    "text": "在解析文档过程中，如果脚本访\n问样式信息，而样式还未加载或\n解析则脚本会得到错误的样式值"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdb0jv464w0",
+                                            "created": 1555218691912,
+                                            "text": "Firefox：样式表还在加载或解析时，阻塞所有脚本"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdb0nkcja00",
+                                            "created": 1555218699968,
+                                            "text": "Chrome：脚本试图访问可能被未加载样式表所\n影响的特定样式属性时才阻塞脚本"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdarncvsk00",
+                            "created": 1555217994239,
+                            "text": "渲染树构建"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdb5wzht4g0",
+                                    "created": 1555219112296,
+                                    "text": "与DOM树的关系（相对应，但非一一对应）"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdb6a9tai00",
+                                            "created": 1555219141218,
+                                            "text": "不可见的dom元素不会被插入到渲染树。例如：head\n元素、display:none元素"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdb6i8gbkw0",
+                                            "created": 1555219158550,
+                                            "text": "一个dom元素有多个渲染对象：1. 复杂结构元素。例\n如：select 元素有三个渲染对象——显示区域、下\n拉列表、按钮；2.文本段落换行，新行是额外的渲染\n对象；3. 不规范的html。css规范：一个inline元素\n只能仅包含inline元素或仅包含block元素。若有混\n合元素时，将会创建匿名block渲染对象包裹inline元素"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdb6s0mz9s0",
+                                            "created": 1555219179845,
+                                            "text": "一些渲染对象对应dom节点，但是不在树上相同的位\n置。浮动和绝对定位元素脱离文本流，在树上的位\n置不同，但是渲染树会标识真实的结构，并用一个\n占位符标识原来的位置"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdb61xuwmo0",
+                                    "created": 1555219123081,
+                                    "text": "流程"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdb748la340",
+                                            "created": 1555219206448,
+                                            "text": "Firefox ，注册一个监听DOM更新的监听器。将frame\n的创建委派给Frame Constructor，这个构建器计\n算样式（参看样式计算）并创建一个frame。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdb7ad2xo80",
+                                            "created": 1555219219780,
+                                            "text": "WebKit，计算样式并创建渲染对象的过程叫“attach\nment”。每个节点有个attach方法。attachment\n过程是同步的。调用新节点自己的attach方法将它\n插入到dom树中"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdb7grdbx40",
+                                            "created": 1555219233705,
+                                            "text": "处理html标签和body标签，构建渲染书的根。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdb65fe1s00",
+                                    "created": 1555219130671,
+                                    "text": "样式计算"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdb7mlk9wg0",
+                                            "created": 1555219246414,
+                                            "text": "计算各种来源的样式表"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdb7wcumi80",
+                                                    "created": 1555219267655,
+                                                    "text": "浏览器默认样式"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdb7zy18a00",
+                                                    "created": 1555219275466,
+                                                    "text": "行内样式"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdb82i9qps0",
+                                                    "created": 1555219281044,
+                                                    "text": "外部样式表"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdb7qeayow0",
+                                            "created": 1555219254682,
+                                            "text": "计算样式的困难"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdb88oo5zs0",
+                                                    "created": 1555219294491,
+                                                    "text": "1.样式数据是非常大的结构，保存大量的\n样式属性会带来内存问题。"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "btdb98ru0j40",
+                                                            "created": 1555219373047,
+                                                            "text": "共享样式数据（需满足某些条件）"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "btdb9d15tj40",
+                                                            "created": 1555219382318,
+                                                            "text": "Firefox使用样式上下文树"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "btdb9fsilmo0",
+                                                            "created": 1555219388325,
+                                                            "text": "Webkit按照正确的级联顺序遍历匹配的声明"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdb8np98y00",
+                                                    "created": 1555219327178,
+                                                    "text": "2.为每个元素查找匹配的规则都需要遍历\n整个样式规则表"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdb8th3jiw0",
+                                                    "created": 1555219339746,
+                                                    "text": "3.样式表复杂的级联顺序"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "btdb9k72qqo0",
+                                                            "created": 1555219397913,
+                                                            "text": "级联顺序（从底到高）"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdb9w8igcg0",
+                                                                    "created": 1555219424121,
+                                                                    "text": "1. 浏览器声明"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbab574p40",
+                                                                    "created": 1555219456572,
+                                                                    "text": "2. 用户声明"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbaeco1nk0",
+                                                                    "created": 1555219463555,
+                                                                    "text": "3. 作者的一般声明"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbah5821s0",
+                                                                    "created": 1555219469635,
+                                                                    "text": "4. 作者的important声明"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbakny43k0",
+                                                                    "created": 1555219477297,
+                                                                    "text": "5. 用户important声明"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "btdb9q87wwg0",
+                                                            "created": 1555219411043,
+                                                            "text": "同等级别声明时，选择器权重计算"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbasaqus80",
+                                                                    "created": 1555219493913,
+                                                                    "text": "如果声明来自style属性，而不是一个选择器的\n规则，则计1，否则计0（＝a）"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbb69hbig0",
+                                                                    "created": 1555219524312,
+                                                                    "text": "计算选择器中id属性的数量（＝b）"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbb8sw2ew0",
+                                                                    "created": 1555219529839,
+                                                                    "text": "计算选择器中class及伪类的数量（＝c）"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "btdbbb1qx2o0",
+                                                                    "created": 1555219534728,
+                                                                    "text": "计算选择器中元素名及伪元素的数量（＝d）"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdarqrab940",
+                            "created": 1555218001641,
+                            "text": "layout/reflow（即根据渲染树计算每个节点的几何信息）"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btdbbj77krc0",
+                                    "created": 1555219552473,
+                                    "text": "说明"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbc7zax5k0",
+                                            "created": 1555219606414,
+                                            "text": "当渲染对象被创建并添加到树中，它们并没有位置\n和大小，计算这些值的过程称为layout或reflow"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbcevsub40",
+                                            "created": 1555219621440,
+                                            "text": "Html是基于流的布局模型。所以流中靠后的元素不会\n影响前面元素的几何特性，所以布局可以在文档中\n从左到右、从上到下进行。table除外"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbckka1og0",
+                                            "created": 1555219633804,
+                                            "text": "坐标系统使用（top，left）坐标相对root frame"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbcmozywo0",
+                                            "created": 1555219638443,
+                                            "text": "布局是一个递归的过程，由根渲染对象开始，它对应\nhtml文档元素，布局继续递归的通过一些或所有的\nframe层级，为每个需要几何信息的渲染对象进行计算。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbcsd4hl40",
+                                            "created": 1555219650785,
+                                            "text": "根渲染对象的位置是0,0，它的大小是viewport－\n浏览器窗口的可见部分。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbczncajk0",
+                                            "created": 1555219666641,
+                                            "text": "所有的渲染对象都有一个layout或reflow方法，渲染对\n象的子对象需要布局时，就调用children的layout方法"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbbq6g3r40",
+                                    "created": 1555219567664,
+                                    "text": "Dirty bit系统"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbd9u2ne00",
+                                            "created": 1555219688816,
+                                            "text": "一个渲染对象发生了变化或是被添加了，就标记\n它及它的children为dirty——需要layout"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbdgeb2d40",
+                                            "created": 1555219703100,
+                                            "text": "存在两个标识——dirty及children are dirty，\nchildren are dirty说明即使这个渲染对象可能没问题，\n但它至少有一个child需要layout"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbbwh69c00",
+                                    "created": 1555219581373,
+                                    "text": "优化"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbe6v9uxk0",
+                                            "created": 1555219760722,
+                                            "text": "layout因为resize或是渲染位置改变（并不是大小改\n变）而触发时，渲染对象的大小将会从缓存中读取，\n而不会重新计算。"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbegeq94o0",
+                                            "created": 1555219781489,
+                                            "text": "如果只有子树发生改变，则layout并不从根开始。\n这种情况发生在，变化发生在元素自身并且不影响它\n周围元素，例如，将文本插入文本域（否则，每次\n击键都将触发从根开始的重排）。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbbyekm800",
+                                    "created": 1555219585569,
+                                    "text": "过程"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbeysg5qw0",
+                                            "created": 1555219821501,
+                                            "text": "父渲染对象计算自己的宽度"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbf2x27s00",
+                                            "created": 1555219830487,
+                                            "text": "父渲染对象读取子对象"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btdbfeav1ao0",
+                                                    "created": 1555219855266,
+                                                    "text": "设置子对象的位置（x，y）"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btdbfjf2i000",
+                                                    "created": 1555219866404,
+                                                    "text": "在需要时（它们当前为dirty或是处于全局layout或者其\n他原因）调用child渲染对象的layout，计算child的高度"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbf4pi7w00",
+                                            "created": 1555219834384,
+                                            "text": "parent渲染对象使用child渲染对象的累积高度，以及\nmargin和padding的高度来设置自己的高度－这将\n被parent渲染对象的parent使用（被爷爷使用）"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btdbf9hmypc0",
+                                            "created": 1555219844792,
+                                            "text": "将dirty标识设置为false"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbc14f98g0",
+                                    "created": 1555219591486,
+                                    "text": "宽度计算"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btdbc2swuts0",
+                                    "created": 1555219595144,
+                                    "text": "换行"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btdbfy1gg2w0",
+                                            "created": 1555219898233,
+                                            "text": "当一个渲染对象在布局过程中需要折行时，则暂停并告\n诉它的parent它需要折行，parent将创建额外的渲\n染对象并调用它们的layout。"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btdarutj2a00",
+                            "created": 1555218010483,
+                            "text": "绘制"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-green-compat",
+    "version": "1.4.43",
+    "id": "btdansaiz6o0"
+}
