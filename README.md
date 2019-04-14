@@ -18,9 +18,10 @@
 - 翻译
   - [使用compass生成能适配retina屏的sprites](https://www.cnblogs.com/miss-radish/p/4612629.html)
   - [Grunt编译sass&compass和压缩js的工作流程](https://www.cnblogs.com/miss-radish/p/4767073.html)
-  - [Android Configuration(Android 配置)](https://www.cnblogs.com/miss-radish/p/4795156.html)
-  - [Android WebViews](https://www.cnblogs.com/miss-radish/p/4795363.html)
-  - [Android 平台指南](https://www.cnblogs.com/miss-radish/p/4795560.html)
+  - [cordova指南系列](https://github.com/floraluo/blog/tree/master/cordova-guide)
+    - [Android平台指南](https://github.com/floraluo/blog/blob/master/cordova-guide/Android%E5%B9%B3%E5%8F%B0%E6%8C%87%E5%8D%97.md)
+    - [Android Web视图](https://github.com/floraluo/blog/blob/master/cordova-guide/Android%20Web%E8%A7%86%E5%9B%BE.md)
+    - [Android配置](https://github.com/floraluo/blog/blob/master/cordova-guide/Android%E9%85%8D%E7%BD%AE.md)
   - [Cordova命令行界面](https://www.cnblogs.com/miss-radish/p/4788876.html)
   - [vscode调试配置部分翻译](https://github.com/floraluo/blog/blob/master/translation/vscode-debugging.md) || [原文](https://code.visualstudio.com/docs/editor/debugging#_launch-configurations)
 
