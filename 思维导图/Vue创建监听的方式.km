@@ -12,42 +12,20 @@
                     "created": 1554197222264,
                     "text": "初始化阶段，opts.watch属性监听",
                     "expandState": "expand",
-                    "layout": null
+                    "layout": null,
+                    "note": "expOrFn：watch属性对象的key；\ncb: watch对象属性对应key的value（opts.watch[key]）;"
                 },
-                "children": [
-                    {
-                        "data": {
-                            "id": "bt38yoxwtb40",
-                            "created": 1554197304450,
-                            "text": "expOrFn：watch属性对象的key；\n cb: watch对象属性对应key的value（opts.watch[key]）;",
-                            "layout": null,
-                            "layout_bottom_offset": {
-                                "x": -0.5,
-                                "y": -11
-                            }
-                        },
-                        "children": []
-                    }
-                ]
+                "children": []
             },
             {
                 "data": {
                     "id": "bt38xwzb8u80",
                     "created": 1554197243585,
                     "text": "渲染安装组件阶段，updateComponent方法监听",
-                    "layout": null
+                    "layout": null,
+                    "note": "expOrFn: updateComponent方法;\ncb：noop;\noptions: 设置beforeUpdate生命周期的函数"
                 },
-                "children": [
-                    {
-                        "data": {
-                            "id": "bt38yw17veo0",
-                            "created": 1554197319888,
-                            "text": "expOrFn: updateComponent方法;\ncb：noop;\noptions: 设置beforeUpdate生命周期的函数",
-                            "layout": null
-                        },
-                        "children": []
-                    }
-                ]
+                "children": []
             },
             {
                 "data": {
@@ -60,8 +38,8 @@
             }
         ]
     },
-    "template": "structure",
-    "theme": "fresh-purple",
+    "template": "right",
+    "theme": "fresh-blue-compat",
     "version": "1.4.43",
     "id": "bt38wgh6yi00"
 }
