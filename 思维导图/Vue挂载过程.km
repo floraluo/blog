@@ -1,0 +1,187 @@
+{
+    "root": {
+        "data": {
+            "id": "bteb14e6odc0",
+            "created": 1555320296558,
+            "text": "$mount()",
+            "note": "创建Vue实例时，有传el，在`Vue.prototype._init`方法内初始化结束后自动调用`vm.$mount(vm.$options.el)`,没有传el则实例化之后手动调用`new Vue({...}).$mount(\"#id\")`",
+            "expandState": "expand"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "btebctfgj9k0",
+                    "created": 1555321213060,
+                    "text": "没有render方法",
+                    "layout": null,
+                    "expandState": "expand",
+                    "resource": []
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btebpbt5hi00",
+                            "created": 1555322193440,
+                            "text": "分解并转换template/el为render方法",
+                            "usecase": null,
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btecatz8s9k0",
+                                    "created": 1555323878638,
+                                    "text": "获取到html内容"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btecay418ao0",
+                                    "created": 1555323887635,
+                                    "text": "调用compileToFunctions，将内容编译成render"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btecbxkgoio0",
+                                    "created": 1555323964815,
+                                    "text": "将render函数挂在options上面"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bteces2xgqw0",
+                                    "created": 1555324187964,
+                                    "text": "$mount.call(this, el)"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btebt2amz9s0",
+                    "created": 1555322486186,
+                    "text": "调用mountComponent方法"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btecigcbv340",
+                            "created": 1555324475868,
+                            "text": "没有$options.render， $options.render = createEmptyVNode",
+                            "note": "将创建空虚拟节点方法赋值给options.render"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btecleov3ps0",
+                            "created": 1555324707364,
+                            "text": "定义updateComponent方法",
+                            "note": "```\n // _render()返回一个VNode\n  // _update()将VNode转成真实的DOM节点\n  updateComponent = () => {\n    vm._update(vm._render(), hydrating)\n  }\n ```"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btecnka5f880",
+                            "created": 1555324876264,
+                            "text": "创建监听器",
+                            "font-size": 18,
+                            "font-weight": "bold",
+                            "note": "```javascript\n// Watcher第二参数expOrFn是updateComponent函数\n// 这个函数会在Watcher的构造方法中赋值给getter实例属性，并且在get实例方法中被调用执行\nnew Watcher(vm, updateComponent, noop, {\n  before () {\n    if (vm._isMounted && !vm._isDestroyed){\n      callHook(vm, 'beforeUpdate')\n    }\n  }\n}, true /* isRenderWatcher */)\n```"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btectqpyjnk0",
+                                    "created": 1555325360465,
+                                    "text": "将此监听器本身添加到vue实例属性_watchers数组",
+                                    "note": "`vm._watchers.push(this)`"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "btecvwf3rps0",
+                                    "created": 1555325529598,
+                                    "text": "初始化监听实例属性"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bted7k3s8hs0",
+                                            "created": 1555326443162,
+                                            "text": "this.getter = updateComponent"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btecw2fudls0",
+                                    "created": 1555325542703,
+                                    "text": "调用实例方法get();"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btecxmrgyo80",
+                                            "created": 1555325665306,
+                                            "text": "将监听实例存入Dep.target"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btecxx1gxnk0",
+                                            "created": 1555325687679,
+                                            "text": "调用this.getter()\n即updateComponent()"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "bted8ovzk0w0",
+                                                    "created": 1555326531939,
+                                                    "text": "vm._render(); 返回VNode"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bted9fqe9ig0",
+                                                    "created": 1555326590374,
+                                                    "text": "vm._update(); \n将render返回的VNode转换为真实节点"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btecogzdlzs0",
+                            "created": 1555324947446,
+                            "text": "返回vue实例"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-blue-compat",
+    "version": "1.4.43",
+    "id": "bteb14e6odc0"
+}
