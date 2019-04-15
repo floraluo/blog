@@ -12,6 +12,7 @@ export const createCompiler = createCompilerCreator(function baseCompile (
   template: string,
   options: CompilerOptions
 ): CompiledResult {
+  // parse()把html字符串转换成AST（抽象语法树[Abstract syntax tree]）节点
   const ast = parse(template.trim(), options)
   if (options.optimize !== false) {
     optimize(ast, options)

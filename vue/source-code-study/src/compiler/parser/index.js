@@ -114,6 +114,9 @@ export function parse (
     shouldDecodeNewlines: options.shouldDecodeNewlines,
     shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
     shouldKeepComment: options.comments,
+    // 解析到新节点时调用start
+    // 解析到<div id="app">, 
+    // 在parseHTML方法内会调用options.start('div', [{name: 'id', vlaue: 'app'}], false);
     start (tag, attrs, unary) {
       // check namespace.
       // inherit parent ns if there is one
@@ -125,6 +128,7 @@ export function parse (
         attrs = guardIESVGBug(attrs)
       }
 
+      // 根据解析出的开始标签，创建一个AST元素
       let element: ASTElement = createASTElement(tag, attrs, currentParent)
       if (ns) {
         element.ns = ns
@@ -144,6 +148,7 @@ export function parse (
         element = preTransforms[i](element, options) || element
       }
 
+      // 开始标签有v-pre指令
       if (!inVPre) {
         processPre(element)
         if (element.pre) {
@@ -215,6 +220,7 @@ export function parse (
       }
       if (!unary) {
         currentParent = element
+        // 将AST元素存入暂存区
         stack.push(element)
       } else {
         closeElement(element)

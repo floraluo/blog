@@ -71,6 +71,7 @@ export function parseHTML (html, options) {
             if (options.shouldKeepComment) {
               options.comment(html.substring(4, commentEnd))
             }
+            // 删除这一段注释，重值html剩余字符串
             advance(commentEnd + 3)
             continue
           }
@@ -81,6 +82,7 @@ export function parseHTML (html, options) {
           const conditionalEnd = html.indexOf(']>')
 
           if (conditionalEnd >= 0) {
+            // 删除这一段条件注释，重值html剩余字符串
             advance(conditionalEnd + 2)
             continue
           }
@@ -89,6 +91,7 @@ export function parseHTML (html, options) {
         // Doctype:
         const doctypeMatch = html.match(doctype)
         if (doctypeMatch) {
+          // 删除doctype声明，重值html剩余字符串
           advance(doctypeMatch[0].length)
           continue
         }
@@ -97,12 +100,21 @@ export function parseHTML (html, options) {
         const endTagMatch = html.match(endTag)
         if (endTagMatch) {
           const curIndex = index
+          // 删除结束标签，重值html剩余字符串
           advance(endTagMatch[0].length)
           parseEndTag(endTagMatch[1], curIndex, index)
           continue
         }
 
         // Start tag:
+        // parseStartTag()返回一个包含tagName，attrs，start, unarySlash, end属性的对象
+        // {
+        //   tagName: start[1],
+        //   attrs: [],
+        //   start: index,
+        //   unarySlash,
+        //   end
+        // }
         const startTagMatch = parseStartTag()
         if (startTagMatch) {
           handleStartTag(startTagMatch)
@@ -189,13 +201,22 @@ export function parseHTML (html, options) {
         attrs: [],
         start: index
       }
+      // 删除开始标签<tagName，重值html剩余字符串
       advance(start[0].length)
       let end, attr
+      // end:开始标签关闭标志‘>’||'/>'
+      // attr:属性‘id="abc"’ || 'v-bind="name"' || 'class="col-xs-12 col-md-6"'
+      // while循环一步步解析开始标签中的属性
+      // 并将匹配到的属性（match返回的数组）存入match.attrs数组中
       while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+        // 删除属性‘key=value’,重值html剩余字符串
         advance(attr[0].length)
+        // 匹配到的属性存入match.attrs数组
         match.attrs.push(attr)
       }
       if (end) {
+        // 当开始标签是以‘/>’结尾，unarySlash == ‘/’
+        // 以‘>’结尾，unarySlash == ‘’
         match.unarySlash = end[1]
         advance(end[0].length)
         match.end = index
@@ -221,6 +242,7 @@ export function parseHTML (html, options) {
 
     const l = match.attrs.length
     const attrs = new Array(l)
+    // 遍历match.attrs中每个使用正则的match方法返回的数组，转换为包含name，value属性的对象
     for (let i = 0; i < l; i++) {
       const args = match.attrs[i]
       const value = args[3] || args[4] || args[5] || ''
@@ -229,7 +251,7 @@ export function parseHTML (html, options) {
         : options.shouldDecodeNewlines
       attrs[i] = {
         name: args[1],
-        value: decodeAttr(value, shouldDecodeNewlines)
+        value: decodeAttr(value, shouldDecodeNewlines) //解码html转义字符
       }
     }
 
@@ -238,6 +260,7 @@ export function parseHTML (html, options) {
       lastTag = tagName
     }
 
+    // 调用parseHtml方法时，传入的start方法
     if (options.start) {
       options.start(tagName, attrs, unary, match.start, match.end)
     }
