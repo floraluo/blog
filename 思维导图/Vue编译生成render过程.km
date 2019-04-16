@@ -1,0 +1,292 @@
+{
+    "root": {
+        "data": {
+            "id": "btedzqpipj40",
+            "created": 1555328651734,
+            "text": "编译template/el\n为render函数"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "btee1dj9cko0",
+                    "created": 1555328779785,
+                    "text": "获取模板内容",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btee0qj0mxs0",
+                            "created": 1555328729705,
+                            "text": "有options.template"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btee5340kp40",
+                                    "created": 1555329070552,
+                                    "text": "模板字符串以\"#\"\n开始视为选择符",
+                                    "note": "使用匹配元素的 innerHTML 作为模板。\n常用的技巧是用 <script type=\"x-template\"> 包含模板"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btee6tnxfds0",
+                                            "created": 1555329206717,
+                                            "text": "查找到与选择符匹配的模板的innerHtml\n\t      template = idToTemplate(template)"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "btee5cu00800",
+                                    "created": 1555329091715,
+                                    "text": "判断template.nodeType",
+                                    "note": "模板将会 替换 挂载的元素。\n挂载元素的内容都将被忽略，除非模板的内容有分发插槽。"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bteea4yzzmw0",
+                                            "created": 1555329466423,
+                                            "text": "template = template.innerHTML"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btee0uhd5940",
+                            "created": 1555328738312,
+                            "text": "有options.el"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btee445zk3k0",
+                                    "created": 1555328994484,
+                                    "text": "template = getOuterHTML(el)"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "btee1yuqqio0",
+                    "created": 1555328826192,
+                    "text": "调用compileToFunctions方法\n编译模板内容并返回render函数"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "btehbovrm080",
+                            "created": 1555338051457,
+                            "text": "1.调用parse()把html字符串转换成AST\n（抽象语法树[Abstract syntax tree]）节点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "btehhtmvweo0",
+                                    "created": 1555338531989,
+                                    "text": "解析HTML\nparseHtml(template, options)",
+                                    "note": "```\nparseHTML(template, {\n    \n    //省略other options\n    \n    start (tag, attrs, unary) {\n      ...\n    },\n\n    end () {\n      ...\n    },\n\n    chars (text: string) {\n      ...\n    },\n    comment (text: string) {\n      ...\n    }\n  })\n  ```"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "btehppoexmg0",
+                                            "created": 1555339150288,
+                                            "text": "第一个字符是\"<\"，使用正则解析识别节\n点类型，不同类型节点执行不同操作"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "btehqu960v40",
+                                                    "created": 1555339238614,
+                                                    "text": "comment，直接删除注释"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "btehruov23k0",
+                                                            "created": 1555339317927,
+                                                            "text": "一般注释，commentEnd==‘-->’"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "btehs1hxp400",
+                                                            "created": 1555339332746,
+                                                            "text": "条件注释，commentEnd==‘]>’"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btehtr8uzfc0",
+                                                    "created": 1555339467158,
+                                                    "text": "Doctype，删除"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btehug9wcpk0",
+                                                    "created": 1555339521640,
+                                                    "text": "End tag结束标签，删除并解析"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "btehvns585s0",
+                                                    "created": 1555339616345,
+                                                    "text": "Start tag开始标签",
+                                                    "expandState": "expand"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "btei2g889sw0",
+                                                            "created": 1555340148452,
+                                                            "text": "解析，parseStartTag()",
+                                                            "expandState": "expand",
+                                                            "layout": null
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "btei6lgspzc0",
+                                                                    "created": 1555340473311,
+                                                                    "text": "解析出开始标签名，属性和值等信息并返回一个包含这\n些信息的一个对象。解析一个信息就删除对应字符串"
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "btei2imbovk0",
+                                                            "created": 1555340153658,
+                                                            "text": "处理，handleStartTag()"
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "btei960twrs0",
+                                                                    "created": 1555340674786,
+                                                                    "text": "格式化属性信息(name，value)"
+                                                                },
+                                                                "children": []
+                                                            },
+                                                            {
+                                                                "data": {
+                                                                    "id": "bteiaxbw23c0",
+                                                                    "created": 1555340812592,
+                                                                    "text": "调用start方法，处理开始标签"
+                                                                },
+                                                                "children": [
+                                                                    {
+                                                                        "data": {
+                                                                            "id": "bteid2nah5s0",
+                                                                            "created": 1555340980894,
+                                                                            "text": "设置命名空间"
+                                                                        },
+                                                                        "children": []
+                                                                    },
+                                                                    {
+                                                                        "data": {
+                                                                            "id": "bteid6j4w080",
+                                                                            "created": 1555340989350,
+                                                                            "text": "根据标签名创建一个AST元素"
+                                                                        },
+                                                                        "children": []
+                                                                    },
+                                                                    {
+                                                                        "data": {
+                                                                            "id": "bteidzapv1c0",
+                                                                            "created": 1555341051968,
+                                                                            "text": "处理指令"
+                                                                        },
+                                                                        "children": []
+                                                                    },
+                                                                    {
+                                                                        "data": {
+                                                                            "id": "bteif5hlhso0",
+                                                                            "created": 1555341143808,
+                                                                            "text": "设置根元素"
+                                                                        },
+                                                                        "children": []
+                                                                    },
+                                                                    {
+                                                                        "data": {
+                                                                            "id": "bteifm4vn7s0",
+                                                                            "created": 1555341180045,
+                                                                            "text": "将AST元素存入暂存区"
+                                                                        },
+                                                                        "children": []
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "btehzefuurc0",
+                                            "created": 1555339909468,
+                                            "text": "text文本"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "btehdt4o3dk0",
+                            "created": 1555338217431,
+                            "text": "2.优化AST，optimize(ast, options)"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "bteheiihzyw0",
+                            "created": 1555338272687,
+                            "text": "3.生成render函数代码，generate(ast, options)"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "btehfmkzm740",
+                            "created": 1555338359909,
+                            "text": "4.返回render函数"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-blue-compat",
+    "version": "1.4.43",
+    "id": "btedzqpipj40"
+}

@@ -158,7 +158,7 @@
                                                 "data": {
                                                     "id": "bted9fqe9ig0",
                                                     "created": 1555326590374,
-                                                    "text": "vm._update(); \n将render返回的VNode转换为真实节点"
+                                                    "text": "vm._update(vm._render()); \n将render返回的VNode转换为真实节点"
                                                 },
                                                 "children": []
                                             }
