@@ -18,7 +18,7 @@
                         "data": {
                             "id": "bthn7n9z5p40",
                             "created": 1555659341036,
-                            "text": "调用update相关回调方法",
+                            "text": "调用update相关回调，更新元素的属性样式等信息",
                             "expandState": "expand"
                         },
                         "children": [
@@ -126,7 +126,7 @@
                                 "data": {
                                     "id": "bthn9lm2yrc0",
                                     "created": 1555659494143,
-                                    "text": "新旧虚拟节点都有孩子节点且不相等，updateChildren",
+                                    "text": "新旧虚拟节点都有孩子节点且不相等，updateChildren。\n除了新增、删除外，子节点都要递归调用patchVnode",
                                     "font-size": 16,
                                     "font-weight": "bold"
                                 },
@@ -250,7 +250,8 @@
                                                         "data": {
                                                             "id": "bthvjpnshvc0",
                                                             "created": 1555682855474,
-                                                            "text": "执行patchVnode"
+                                                            "text": "执行patchVnode",
+                                                            "font-weight": "bold"
                                                         },
                                                         "children": []
                                                     },
