@@ -18,8 +18,12 @@ function updateDirectives (oldVnode: VNodeWithData, vnode: VNodeWithData) {
   }
 }
 
+// 每个元素通过用一个emptyNode（空虚拟节点）按序执行完以下方法：
+// updateAttrs，updateClass, updateDOMListeners, updateProps, updateStyle, create(registRef), invokeCreateHooks，
+// 执行updateDirectives时，元素有指令便调用此方法更新
 function _update (oldVnode, vnode) {
   const isCreate = oldVnode === emptyNode
+  // 节点等于空虚拟节点则说明这个节点已经被销毁
   const isDestroy = vnode === emptyNode
   const oldDirs = normalizeDirectives(oldVnode.data.directives, oldVnode.context)
   const newDirs = normalizeDirectives(vnode.data.directives, vnode.context)

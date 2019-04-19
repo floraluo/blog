@@ -548,6 +548,7 @@ export function createPatchFunction (backend) {
     const oldCh = oldVnode.children
     const ch = vnode.children
     if (isDef(data) && isPatchable(vnode)) {
+      // 更新元素属性，class, DOM监听, DOMProps, style, $ref, 指令
       for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
       if (isDef(i = data.hook) && isDef(i = i.update)) i(oldVnode, vnode)
     }
@@ -711,6 +712,8 @@ export function createPatchFunction (backend) {
       isInitialPatch = true
       createElm(vnode, insertedVnodeQueue)
     } else {
+      // 初次渲染时，oldVnode是真是节点，即：文件源码带有花括号绑定值的代码片段
+      // 更新时，oldVnode则是上一次渲染时，渲染函数返回的虚拟节点
       const isRealElement = isDef(oldVnode.nodeType)
       if (!isRealElement && sameVnode(oldVnode, vnode)) {
         // patch existing root node
