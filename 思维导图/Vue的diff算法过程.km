@@ -1,0 +1,380 @@
+{
+    "root": {
+        "data": {
+            "id": "bth445sd4mw0",
+            "created": 1555605466785,
+            "text": "diff算法"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "bthn3iaptt40",
+                    "created": 1555659016740,
+                    "text": "patchVnode()",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "bthn7n9z5p40",
+                            "created": 1555659341036,
+                            "text": "调用update相关回调方法",
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bthmyhzevag0",
+                                    "created": 1555658624236,
+                                    "text": "updateDOMProps"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bthn041qg8w0",
+                                    "created": 1555658750630,
+                                    "text": "updateDirectives"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bthmzk42p1c0",
+                                    "created": 1555658707235,
+                                    "text": "update"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bthmzmrsaa00",
+                                            "created": 1555658713023,
+                                            "text": "registerRef"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "bthmuraawiw0",
+                                    "created": 1555658331029,
+                                    "text": "updateClass"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bthmv8au16o0",
+                                            "created": 1555658368066,
+                                            "text": "比对更新前后虚拟节点的class值，不同就重新设置元素class"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "bthml12elt40",
+                                    "created": 1555657568677,
+                                    "text": "updateAttrs"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bthmlkqwy540",
+                                            "created": 1555657611518,
+                                            "text": "循环遍历新虚拟节点的属性，与旧的对应的虚拟节点的属性一一比对，不相等就setAttr"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bthmqgahfao0",
+                                            "created": 1555657993638,
+                                            "text": "遍历旧虚拟节点的属性，查找新虚拟节点的值，值为null或undefined就移除元素这个属性"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "bthmyaduyqo0",
+                                    "created": 1555658607695,
+                                    "text": "updateDOMListeners"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bthmysdflc00",
+                                    "created": 1555658646851,
+                                    "text": "updateStyle"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bthn9i1nwkg0",
+                            "created": 1555659486378,
+                            "text": "更新孩子节点"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "bthn9lm2yrc0",
+                                    "created": 1555659494143,
+                                    "text": "新旧虚拟节点都有孩子节点且不相等，updateChildren",
+                                    "font-size": 16,
+                                    "font-weight": "bold"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "bthnx8awvpk0",
+                                            "created": 1555661345909,
+                                            "text": "获取到oldChVnode和newChVnode的首尾节点。\nwhile循环所有子节点",
+                                            "layout": null
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bthvmmepyso0",
+                                            "created": 1555683083488,
+                                            "text": "获取新旧子节点列表中的首尾节点和首尾索引"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bthoo49882o0",
+                                            "created": 1555663452932,
+                                            "text": "新旧节点两两比对，共5种比对方法",
+                                            "expandState": "expand"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "bthv3v9lbso0",
+                                                    "created": 1555681613850,
+                                                    "text": "1. sameVNode(oldStartVnode, newStartVnode)"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "bthv9ndwteo0",
+                                                            "created": 1555682066881,
+                                                            "text": "执行patchVnode"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthv9wixgzs0",
+                                                            "created": 1555682086776,
+                                                            "text": "oldStartIndex++, newStartIndex++"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bthv4m36z600",
+                                                    "created": 1555681672236,
+                                                    "text": "2. sameVnode(oldEndVnode, newEndVnode)"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "bthva9nmqow0",
+                                                            "created": 1555682115358,
+                                                            "text": "执行patchVnode"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvaamyi1s0",
+                                                            "created": 1555682117494,
+                                                            "text": "oldEndIndex--, newEndIndex--"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bthv4xmyy5s0",
+                                                    "created": 1555681697376,
+                                                    "text": "3. sameVnode(oldStartVnode, newEndVnode)"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvakd78140",
+                                                            "created": 1555682138672,
+                                                            "text": "执行patchVnode"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvgtj3djk0",
+                                                            "created": 1555682628805,
+                                                            "text": "移动oldStartVnode.elm到oldEndVnode.elm之后\n（移动的是页面种真实的元素，而非虚拟节点）"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvatl0www0",
+                                                            "created": 1555682158736,
+                                                            "text": "oldStartIndex++, newEndIndex--"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bthv5679pog0",
+                                                    "created": 1555681716018,
+                                                    "text": "4. sameVnode(oldEndVnode, newStartVnode)"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvjpnshvc0",
+                                                            "created": 1555682855474,
+                                                            "text": "执行patchVnode"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvkq5p6zs0",
+                                                            "created": 1555682934921,
+                                                            "text": " 移动oldEndVnode.elm到oldStartVnode.elm之前"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthvjr58ipk0",
+                                                            "created": 1555682858706,
+                                                            "text": "oldEndIndex--, newStartIndex++"
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bthvw7tk63c0",
+                                                    "created": 1555683835375,
+                                                    "text": "5. 遍历旧children列表，查找与newStartVnode相同key的同一元素"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "bthw0e9gk1c0",
+                                                            "created": 1555684162854,
+                                                            "text": "获取oldChildren中每个节点的key与index的映射关系"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthw1fiffvk0",
+                                                            "created": 1555684243937,
+                                                            "text": "获取newStartVnode与oldChildren中有相同key且是同一元素的index。即：idxInOld"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthw3hichpc0",
+                                                            "created": 1555684405014,
+                                                            "text": "如果idxInOld不存在，创建newStartVnode新元素；"
+                                                        },
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "data": {
+                                                            "id": "bthw5v83j2w0",
+                                                            "created": 1555684591597,
+                                                            "text": "获取oldChildren[idxInOld]副本；\n执行patchVnode；\noldChildren[idxInOld] = undefined;\n移动副本元素到oldStartVnode.elm之前",
+                                                            "layout": null
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "bthv0bfsbc00",
+                                            "created": 1555681335596,
+                                            "text": "比对完所有节点后，还有额外两种情况"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "bthv1hnushs0",
+                                                    "created": 1555681427509,
+                                                    "text": "1. oldStartIndex > oldEndIndex:  有新增节点"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "bthv2jaf5vk0",
+                                                    "created": 1555681509414,
+                                                    "text": "2. newStartIndex > newEndIndex: 删除节点"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "bthnaen2ujk0",
+                                    "created": 1555659557330,
+                                    "text": "只有新节点有孩子节点，addVnode"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "bthnbdt30o00",
+                                    "created": 1555659633880,
+                                    "text": "只有旧节点有孩子节点，移除元素的子节点， removeVnodes"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "bthnctj1dls0",
+                            "created": 1555659746465,
+                            "text": "元素子节点是文本节点时，且不相等，设置元素文本节点，node.textContent = text"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "right",
+    "theme": "fresh-blue-compat",
+    "version": "1.4.43",
+    "id": "bth445sd4mw0"
+}
