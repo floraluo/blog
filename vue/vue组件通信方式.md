@@ -88,6 +88,7 @@
 
 ## 4. <a name="跨层级祖传孙组件通信">跨层级祖传孙组件通信：provide&inject</a>
 > **provide**: `Object | () => Object `选项应该是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性。在该对象中你可以使用 ES2015 Symbols 作为 key，但是只在原生支持 Symbol 和 Reflect.ownKeys 的环境下可工作。
+>
 > **inject**: `Array<string> | { [key: string]: string | Symbol | Object }` 选项应该是：
 > - 一个字符串数组，或
 > - 一个对象，对象的 key 是本地的绑定名，value 是：
