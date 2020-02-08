@@ -14,7 +14,7 @@
 - [http缓存](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)
 - Vue
   - [vue添加监听方式](https://github.com/floraluo/blog/blob/master/vue/%E6%B7%BB%E5%8A%A0%E7%9B%91%E5%90%AC%E6%96%B9%E5%BC%8F.md)
-  - [Vue组件通信方式]()
+  - [Vue组件通信方式](https://github.com/floraluo/blog/blob/master/vue/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F.md)
 
 - 翻译
   - [使用compass生成能适配retina屏的sprites](https://www.cnblogs.com/miss-radish/p/4612629.html)

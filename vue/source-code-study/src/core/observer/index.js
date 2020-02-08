@@ -141,6 +141,8 @@ export function defineReactive (
 ) {
   const dep = new Dep()
 
+  // 性能优化：展示型数据为主。
+  // 获取属性描述符，熟悉的configurable===false 直接返回，不进行下面的操作
   const property = Object.getOwnPropertyDescriptor(obj, key)
   if (property && property.configurable === false) {
     return
@@ -153,6 +155,7 @@ export function defineReactive (
     val = obj[key]
   }
 
+  // 深入观察val
   let childOb = !shallow && observe(val)
   Object.defineProperty(obj, key, {
     enumerable: true,
