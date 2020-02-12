@@ -29,18 +29,18 @@ brew updata
 1. 使用[清华源设置参考](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)。
 2. 切换回官方源：
 
-```sh
-#重置brew.git（恢复默认源）:
-cd "$(brew --repo)"
-git remote set-url origin https://github.com/Homebrew/brew.git
+    ```sh
+    #重置brew.git（恢复默认源）:
+    cd "$(brew --repo)"
+    git remote set-url origin https://github.com/Homebrew/brew.git
 
-#重置homebrew-core.git:
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+    #重置homebrew-core.git:
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://github.com/Homebrew/homebrew-core.git
 
-#更新
-brew updata
-```
+    #更新
+    brew updata
+    ```
 
 注释掉bash配置文件里的有关Homebrew Bottles即可恢复官方源。 重启bash或让bash重读配置文件。
 

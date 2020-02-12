@@ -1,6 +1,6 @@
 # VsCode开发JavaWeb程序
 
-    2020-02-09 11:11:39
+2020-02-09 11:11:39
 
 <!-- TOC -->
 
@@ -21,7 +21,7 @@
 
 ## 安装Java需要的插件
 
-`Java Extension Pack`
+- `Java Extension Pack`
 
   收集了包括编辑、测试、调试的流行插件
 
@@ -34,35 +34,35 @@
   `Java Dependency ViewerPreview`| 查看Java依赖（引用库、资源文件、包、class）
   `Visual Studio IntelliCode`| AI辅助开发
 
-其他流行的插件
+- 其他流行的插件
 
-1. `Spring Boot Tools`
-2. `Spring Initializr Java Support`
-3. `Spring Boot Dashboard`
-4. `Tomcat`
-5. `Jetty`
-6. `CheckStyle`
+  1. `Spring Boot Tools`
+  2. `Spring Initializr Java Support`
+  3. `Spring Boot Dashboard`
+  4. `Tomcat`
+  5. `Jetty`
+  6. `CheckStyle`
 
 ## 使用maven创建一个Webapp
 
 ### 设置maven的镜像
 
-- 查找到maven安装位置
+1. 查找到maven安装位置
 
-  ```sh
-  which mvn
-  ```
-  
-- 打开maven的安装目录`/conf/settings.xml`，在`mirrors`节点中添加下面代码
+    ```sh
+    which mvn
+    ```
 
-  ```xml
-  <mirror>
-    <id>alimaven</id>
-    <name>aliyun maven</name>
-    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-    <mirrorOf>central</mirrorOf>
-  </mirror>  
-  ```
+2. 打开maven的安装目录`/conf/settings.xml`，在`mirrors`节点中添加下面代码
+
+    ```xml
+    <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>  
+    ```
 
 ### 创建Webapp
 
@@ -72,7 +72,7 @@
     - `groupId`：是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。
     - `artifactId`: 是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。
 
-    >例如tomcat项目的GroupId是org.apache，它的域是org（因为tomcat是非营利项目），公司名称是apache，`ArtifactId`是tomcat。域又分为org、com、cn等等许多，其中org为非营利组织，com为商业组织，cn表示域为中国。我创建的这个Java Web项目groupId: cn.lf, artifactId: webapp
+      例如tomcat项目的GroupId是org.apache，它的域是org（因为tomcat是非营利项目），公司名称是apache，`ArtifactId`是tomcat。域又分为org、com、cn等等许多，其中org为非营利组织，com为商业组织，cn表示域为中国。我创建的这个Java Web项目groupId: cn.lf, artifactId: webapp
 3. 执行`mvn clean package`将项目打包后，在 target 目录中会生成 `.war` 文件
 
 ## 发布到本地Tomcat服务器

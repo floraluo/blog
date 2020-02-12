@@ -37,6 +37,7 @@
 ## 创建Java web应用
 
 ### VS Code中创建
+
 [VSCode开发JavaWeb程序](https://github.com/floraluo/blog/blob/master/java/VSCode%E5%BC%80%E5%8F%91JavaWeb%E7%A8%8B%E5%BA%8F.md)
 
 ### Intellij Idea中创建
