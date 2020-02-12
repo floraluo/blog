@@ -2,39 +2,41 @@
 <!-- TOC -->
 
 - [1. JDK安装](#1-jdk安装)
-- [2. tomcat安装](#2-tomcat安装)
-  - [2.1. tomcat目录结构](#21-tomcat目录结构)
+- [2. tomcat安装与配置](#2-tomcat安装与配置)
+  - [安装tomcat](#安装tomcat)
+  - [Intellij Idea中配置tomcat](#intellij-idea中配置tomcat)
+  - [VS Code中配置tomcat](#vs-code中配置tomcat)
+- [创建Java web应用](#创建java-web应用)
+  - [VS Code中创建](#vs-code中创建)
+  - [Intellij Idea中创建](#intellij-idea中创建)
 
 <!-- /TOC -->
 
 ## 1. JDK安装
 
-## 2. tomcat安装
+## 2. tomcat安装与配置
 
-```sh
-#搜索tomcat是否存在：
-brew search tomcat
+### 安装tomcat
 
-#安装tomcat：
-brew install tomcat
+[安装tomcat](https://github.com/floraluo/blog/blob/master/tomcat/macOS%E5%AE%89%E8%A3%85tomcat.md)
 
-#检查是否安装成功：
-catalina -h
+### Intellij Idea中配置tomcat
 
-#运行tomcat：
-catalina run
-```
+在【运行/调试配置】（Run/Debug Configurations）面板中：
 
-使用`brew`命令安装不需要再额外配置环境变量，因为安装时HomeBrew自动软连接命令文件至`/usr/local/bin`
+名称 | 作用/含义
+--- | ---
+`Name` | 这个tomcat服务器名称
+`Before launch` | 启动服务器之前需要干什么。`Activate tool window`: 激活工具窗口
+`Application server` | 应用服务器
+`On 'Update' action` | Idea中执行‘更新’操作时：`Update resources`服务器更新静态资源， `Updata classes and resources`服务器更新类和静态资源，`Redeploy`服务器重新部署， `Restart server`重启服务器
+`On frame deactivation` | Idea失活时：`Do nothing`什么也不做， `Update resources`服务器更新静态资源， `Updata classes and resources`服务器更新类和静态资源
 
-### 2.1. tomcat目录结构
+### VS Code中配置tomcat
 
-| 目录 | 说明
-| --- | ---
-| `/bin` | 存放各种平台下用于启动和停止的命令文件
-| `/conf` | 存放Tomcat服务器的各种配置文件
-| `/lib` | 存放Tomcat服务器所需的各种JAR文件
-| `/logs` | 存放Tomcat的日志文件
-| `/temp` | 存放Tomcat运行时的临时文件
-| `/webapps` | 当发布Web应用时，默认会将Web应用的文件发布到此目录中
-| `/work` | Tomcat把由JSP生成的Servlet放于此目录
+## 创建Java web应用
+
+### VS Code中创建
+[VSCode开发JavaWeb程序](https://github.com/floraluo/blog/blob/master/java/VSCode%E5%BC%80%E5%8F%91JavaWeb%E7%A8%8B%E5%BA%8F.md)
+
+### Intellij Idea中创建
