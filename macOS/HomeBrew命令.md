@@ -5,10 +5,10 @@
   名称 | 作用
   --- | ---
   `[sudo] brew services list` | 列出当前用户所有正在运行的服务
-  `[sudo] brew services run (formula|--all)` | 运行服务方案并在登录（或启动）时不注册启动
-  `[sudo] brew services start (formula|--all)` | 立即启动这个服务方案并在登录（或启动）时注册启动
-  `[sudo] brew services stop (formula|--all)` | 立即停止这个服务方案并在登录（或启动）时不注册启动
-  `[sudo] brew services restart (formula|--all)` | 立即停止（如必须）并启动服务，在登录（或启动）时注册启动
+  `[sudo] brew services run (formula\|--all)` | 运行服务方案并在登录（或启动）时不注册启动
+  `[sudo] brew services start (formula\|--all)` | 立即启动这个服务方案并在登录（或启动）时注册启动
+  `[sudo] brew services stop (formula\|--all)` | 立即停止这个服务方案并在登录（或启动）时不注册启动
+  `[sudo] brew services restart (formula\|--all)` | 立即停止（如必须）并启动服务，在登录（或启动）时注册启动
   `[sudo] brew services cleanup` | 删除所有未使用的服务
 
   例子：
