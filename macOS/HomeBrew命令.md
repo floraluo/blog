@@ -2,7 +2,7 @@
 
 - `brew services <subcommand>`: 使用macOS的launchctl（1）后台程序管理器管理后台服务。如果使用**sudo**执行这个命令，那启动的时候在`/Library/LaunchDaemons`下操作。否则登录的时候在`~/Library/LaunchAgents`下操作
 
-  名称 | 作用
+  命令 | 作用
   --- | ---
   `[sudo] brew services list` | 列出当前用户所有正在运行的服务
   `[sudo] brew services run (formula\|--all)` | 运行服务方案并在登录（或启动）时不注册启动
