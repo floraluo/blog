@@ -1,16 +1,13 @@
 # [HomeBrew](https://brew.sh/index_zh-cn)的用法
 
-<!-- TOC -->
-
-- [命令](#命令)
-- [使用镜像](#使用镜像)
-- [从第三方库安装formula/application](#从第三方库安装formulaapplication)
+- [HomeBrew的用法](#homebrew的用法)
+  - [命令](#命令)
+  - [使用镜像](#使用镜像)
+  - [从第三方库安装formula/application](#从第三方库安装formulaapplication)
     - [**brew tap**命令](#brew-tap命令)
     - [仓库命名约定和假设](#仓库命名约定和假设)
     - [重复名称的formula](#重复名称的formula)
-- [设置环境变量](#设置环境变量)
-
-<!-- /TOC -->
+  - [设置环境变量](#设置环境变量)
 
 ## 命令
 
