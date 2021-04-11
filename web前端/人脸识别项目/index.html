@@ -1,0 +1,1381 @@
+<div class="layui-fluid" id="faceBody">
+  <script src="/src/style/ai_face/js/cropper/cropper.min.js"></script>
+  <script src="/src/style/ai_face/js/tracking.js"></script>
+  <script src="/src/style/ai_face/js/data/face-min.js"></script>
+  <div class="layui-card face-body">
+    <img class="img-earth layui-anim-rotate layui-anim-loop" src="/src/style/ai_face/img/earth.png" alt="">
+    <div class="layui-tab layui-tab-brief " lay-filter="classRecord_tabBrief">
+      <div class="face-content">
+        <h3>卡蜜助教人脸考勤系统</h3>
+        <ul class="row-tab j-row-tab">
+          <!-- <li class="active"><a href="#">人脸考勤签到</a></li>
+          <li><a href="#">人脸录入采集</a></li> -->
+          <li class="active j-tab-face-sign">人脸考勤签到</li>
+          <li class="j-tab-face-collect">人脸录入采集</li>
+        </ul>
+        <div class="layui-row face-main-box">
+          <div class=" main-left-box">
+            <div class="box video-box">
+              <span class="style-burling left-top"></span>
+              <span class="style-burling right-top"></span>
+              <span class="style-burling left-bottom"></span>
+              <span class="style-burling right-bottom"></span>
+              <div class="video-window j-video-window">
+                <div class="layer-camera j-layer-camera">
+                  <video id="videoSignIn" height="622.5" width="830" preload autoplay loop muted></video>
+                  <canvas id="canvasSignIn" height="622.5" width="830"></canvas>
+                  <div id="showPhoto" class="show-photo"><img id="photoSource"></div>
+                  <canvas id="canvasFace" style="display: none;"></canvas>
+                </div>
+                <div class="layer-before-sign j-layer-before-sign">
+                  <img src="/src/style/ai_face/img/scan-person.png" alt="人头">
+                  <button class="layui-btn sign-btn j-begin-sign" type="button">开始签到</button>
+                </div>
+                <div class="layer-detect-camera j-layer-detect-camera">
+                  <img src="/src/style/ai_face/img/camera.png" alt="摄像头">
+                  <p class='waiting j-waiting'>正在检测摄像头，请稍等...</p>
+                  <p class='opening j-opening'>摄像头开启中</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class=" main-right-box">
+            <div class="box">
+              <span class="style-burling left-top"></span>
+              <span class="style-burling right-top"></span>
+              <span class="style-burling left-bottom"></span>
+              <span class="style-burling right-bottom"></span>
+              <div class="user-list j-user-list">
+                <div class="panel-sign j-panel-sign">
+                  <div class="list-title">学员考勤列表</div>
+                  <div class="list-box">
+                    <form class="layui-form form-search-student">
+                      <div class="layui-form-item item-input-date">
+                        <input type="text" class="layui-input" name="timeStartDefault" id="searchDate"
+                          placeholder="选择日期">
+                        <!-- <i class="layui-icon layui-icon-date"></i> -->
+                        <!-- <img src="/src/style/ai_face/img/calendar.png" alt="" id="triggerSearchDate"> -->
+                      </div>
+                      <div class="layui-form-item item-select-sign">
+                        <select name="status" id="searchStatus">
+                          <option value="">全部签到</option>
+                          <option value="1">签到成功</option>
+                          <option value="0">签到失败</option>
+                        </select>
+                      </div>
+                      <div class="layui-form-item item-input-student">
+                        <input type="text" id="searchKey" class="layui-input" name="key" placeholder="搜索学员">
+                        <button class="layui-btn btn-search j-btn-search-sign">搜索</button>
+                      </div>
+
+                    </form>
+                    <ul class="list j-record-list"></ul>
+                    <ul class="list j-search-record-list"></ul>
+                  </div>
+                  <div class="no-data-box j-waiting-sign">
+                    <div class="no-data">
+                      <img src="/src/style/ai_face/img/card.png" alt="">
+                      <span>等待考勤中...</span>
+                    </div>
+                  </div>
+                  <div class="no-data-box j-signlist-nodata">
+                    <div class="no-data">
+                      <img src="/src/style/ai_face/img/card.png" alt="">
+                      <span>暂无数据</span>
+                    </div>
+                  </div>
+                  <div class="total-data j-total-data"></div>
+                  <div class="btn-group j-btn-group-sign">
+                    <button class="layui-btn btn-stop-sign j-stop-sign" type="button">结束签到</button>
+                  </div>
+                </div>
+
+                <div class="panel-collect j-panel-collect">
+                  <div class="list-title">采集学员人脸信息</div>
+                  <div class="list-box">
+                    <div class="search-box">
+                      <div class="input-box">
+                        <i class="layui-icon layui-icon-search"></i>
+                        <input type="text" class="j-user-search" name="username" lay-verify="required"
+                          placeholder="请输入学员姓名/手机号码搜索" autocomplete="off" class="layui-input">
+                        <!-- <select class="js-search-student" name="user">
+                          <option value=""></option>
+                        </select> -->
+                        <!-- <i class="layui-icon layui-icon-close"></i> -->
+                      </div>
+                      <!-- <button class="layui-btn search-btn" type="button">搜索</button> -->
+                    </div>
+                    <div class="no-choice-student j-no-choice-student">
+                      <img src="/src/style/ai_face/img/card.png" alt="">
+                      <p>请选择一位学员进行人脸采集</p>
+                    </div>
+                    <ul class="match-user-list j-match-user-result"></ul>
+                    <div class="panel-match-student j-panel-match-student">
+                      <div class="student-info-title j-student-info-title"></div>
+                      <div class="student-face-info j-student-face-info"></div>
+                      <div class="notice j-notice"><img src="/src/style/ai_face/img/notice2.png"
+                          alt="">最多上传3张人脸信息！如果替换请先删除一张！</div>
+                      <div class="student-face-preview j-student-face-preview">
+                        <div class="no-face-info j-no-face-info">
+                          <img src="/src/style/ai_face/img/card-light.png" alt="">
+                          <p>未采集人脸信息</p>
+                        </div>
+                        <div class="preview-face j-preview-face"></div>
+                      </div>
+                      <div class="btn-group">
+                        <button class="layui-btn btn-take-photo j-take-photo" type="button">立即拍摄</button>
+                        <button class="layui-btn btn-upload-photo j-upload-photo" type="button">本地上传</button>
+                        <button class="layui-btn btn-return j-return-takephoto" type="button">返回</button>
+                        <button class="layui-btn btn-take-photo-again btn-take-photo-again j-take-photo-again"
+                          type="button">重新拍摄</button>
+                        <button class="layui-btn btn-upload-photo-again btn-upload-photo-again j-upload-photo-again"
+                          type="button">重新上传</button>
+                        <button class="layui-btn btn-submit-photo j-submit-photo" type="button">提交</button>
+                        <input type="file" id="uploadPhoto" accept="image/jpeg,image/png,image/jpg"
+                          style="display: none;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row-mark">
+          <p>注意事项：<br>
+            1.使用前请确保摄像设备正确连接<br>
+            2.学员需先完成人脸信息采集，否则不能进行人脸考勤签到<br>
+            3.九岁以下小孩，建议每3～4个月更新一次照片<br>
+            4.请使用谷歌浏览器，否则不能进行人脸考勤 <a href="//image.taokatao.cn/common/ChromeSetup.exe"
+              download="ChromeSetup">下载谷歌浏览器</a>
+          </p>
+          <audio id="audio" src="/src/style/ai_face/signSuccess.mp3">您的浏览器不支持 audio 元素</audio>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  let getT;
+
+  const videoMaxWidth = 830, videoMaxHeight = 622.5,
+        videoMinWidth = 572, videoMinHeight = 429;
+  let access_token, path, isUpload, video, canvas, canvasContext, mediaStreamTrack, users, tracker,
+    trackTask, taskTimer, isSearchByClick = false, loadingIndex, doFaceReq = false,
+    timeEndLongUser = null, timeEndLongSign = null, playList = 0;
+    paramUsersPage = 1, paramSignPage = 1, noMoreRecord = false,
+    signRecordRequesting = false;
+  function init() {
+    layui.use(['form', 'formSelects'], function () {
+      layui.form.render();
+      layui.formSelects.render();
+    });
+  }
+
+  layui.use(['layer', 'laydate', 'admin', 'table', 'form', 'view', 'common_face_analysis', 'laytpl'], function (exports) {
+    let $ = layui.$,
+      layer = layui.layer,
+      table = layui.table,
+      isFirstGet = true,
+      laydate = layui.laydate,
+      admin = layui.admin,
+      form = layui.form,
+      view = layui.view,
+      common_face_analysis = layui.common_face_analysis,
+      laytpl = layui.laytpl;
+
+    access_token = layui.data('layuiAdmin').access_token;
+    path = layui.setter.serverPath;
+    video = document.getElementById('videoSignIn');
+    canvas = document.getElementById('canvasSignIn');
+    canvasContext = canvas.getContext('2d');
+    laydate.render({
+      elem: '#searchDate',
+      value: new Date()
+    });
+
+    $('#faceBody').css('height',$(document).height());
+    window.onresize = function () {
+      setScrollBar();
+      setVideoCanvasSize();
+      $('#faceBody').css('height',$(document).height());
+    }
+    
+    setTimeout(function(){
+      let tab = +parseUrlGetValue('tab');
+      if (tab === 2) {
+        // getUsers(function(){
+          $(".j-tab-face-collect").trigger('click');
+        // });
+      }
+      getSignList();
+      setScrollBar();
+      setVideoCanvasSize();
+    }, 100);
+    function setScrollBar() {
+      if ($(document).width() >= 1000) {
+        $('.face-body').removeAttr('style');
+      } else {
+        $('.face-body').css('overflow-x', 'scroll');
+      }
+      let documentHeight = $(document).height(),
+      faceContentHeight = $('.face-content').height();
+      if ( documentHeight > faceContentHeight ) {
+        $('.face-content').css('padding-top', `${(documentHeight - faceContentHeight) / 2}px` )
+      } else {
+        $('.face-content').removeAttr('style');
+      }
+    }
+    function setVideoCanvasSize() {
+      let size = getScreenSize();
+      if (size === 'md') {
+        canvas.width = video.width = videoMinWidth;
+        canvas.height = video.height = videoMinHeight;
+      } else if (size === 'lg') {
+        canvas.width = video.width = videoMaxWidth;
+        canvas.height = video.height = videoMaxHeight;
+      }
+    }
+    // var rootUrl =`/#/edu/ai - face / index / faceOpen=1`
+  
+    var rootUrl = `${window.location.href}/index/faceOpen=1`
+    if (layui.router().search.faceOpen) {
+      $('.layui-header').hide()
+      $('.layui-side').hide()
+      $('.layadmin-header').hide()
+      $('.layui-btn[data-type=fixed_class]').hide()
+      $('.layui-btn[data-type=temporaryClass]').hide()
+      $('.layui-btn[data-type=oneGoOne]').hide()
+      $('.layui-btn[data-type=switch]').hide()
+
+      $('.layui-body').css({
+        top: 0,
+        left: 0
+      })
+      $('.layui-fluid').css({
+        padding: 0
+      })
+      $('#calendar').css({
+        padding: '10px'
+      })
+    } else {
+      window.open(`${rootUrl}`);
+    }
+
+
+    if (getJurisdiction(96)) {
+
+    
+    if (!localStorage.getItem('faceFirstEnter')){
+      setTimeout(function(){
+        localStorage.setItem('faceFirstEnter', true);
+         let offset = $('.j-row-tab').offset();
+         $('body').append(`<div class="layui-layer-shade" id="layui-layer-guide"
+       style="z-index: 19891016; background-color: rgba(0, 0, 0, .5);">
+        <img src="/src/style/ai_face/img/guide.png" alt="" id="guide"
+         style="left: ${offset.left}px;top: ${offset.top+50}px; z-index: 1;position: absolute;">
+       </div>`);
+         $('#layui-layer-guide').on('click', function () {
+           $(this).remove();
+         })
+       }, 200);
+    }
+
+    $('.j-user-search').on('keyup', function () {
+      let value = this.value;
+      if (/[a-zA-Z\u4e00-\u9fa5]+|\d{3}/.test(value)) {
+        $('.j-match-user-result').show();
+        $('.j-no-choice-student').hide();
+        $('.j-panel-match-student').hide();
+        $('.j-student-info-title, .j-student-face-info').html('');
+        let usersTemp = users || [];
+        let filterUsers = usersTemp.filter((user) => {
+          return user.userRealName.search(value) >= 0 || user.userTelNum.search(value) >= 0;
+        });
+
+        laytpl(`{{#  layui.each(d, function(index, item){ }}
+          <li data-id="{{item.encryptionId}}">
+            <img src="{{ item.userPicUrl }}" alt="">
+            <span class="name">{{ item.userRealName }}</span>
+            <span class="number">{{ item.userTelNum }}</span>
+          </li>
+        {{#  }); }}
+        {{#  if(d.length === 0){ }}
+          <li class="no-match">无匹配学员</li>
+        {{#  } }} `).render(filterUsers, (html) => {
+          $('.j-match-user-result').html(html);
+        });
+      } else {
+        $('.j-match-user-result').html('');
+        if ($('.j-student-info-title').is(":hidden")) {
+          $('.j-no-choice-student').show();
+        }
+      }
+    })
+    // 点击人脸录入采集
+    $('.j-tab-face-collect').on('click', () => {
+      // 初次点击加载学员信息
+      // 若有进行拍摄/上传等行为，再次点击清空行为痕迹
+      let id;
+      if (!users) {
+        getUsers();
+        setInterval(function () {
+          paramUsersPage = 1;
+          // users = [];
+          getUsers();
+        }, 60000);
+        // encryptionCardMyId = BRA4nDIS_R41gPPuVLPAzw / type=1 /#tab = 1
+        id = parseUrlGetValue("encryptionCardMyId");
+        // if (id) {
+        //   getStudentDetailInfo(id);
+        // }
+      } else {
+        clearCropper();
+        $('.j-student-info-title, .j-student-face-info, .j-preview-face').html('');
+      }
+      trackTaskStop();
+      // 隐藏所有按钮
+      $('.j-take-photo, .j-upload-photo, .j-take-photo-again, .j-upload-photo-again, .j-submit-photo').hide();
+      // 隐藏【开始签到】，签到面板, 匹配的学员信息面板
+      $('.j-layer-before-sign, .j-panel-sign, .j-panel-match-student').hide();
+      //打开<检测摄像头中>
+      $('.j-layer-detect-camera').css('display', 'flex');
+      // 打开采集人脸面板， 裁剪图片视窗， 采集面板初始化视图
+      $('.j-panel-collect, #showPhoto, .j-no-choice-student').show();
+
+      $('body').append(`<div class="layui-layer-shade" id="layui-layer-enter-collect"
+       style="z-index: 19891016;"></div>`)
+      getUserMedia(function () {
+        $('#layui-layer-enter-collect').remove();
+        if (id) {
+          getStudentDetailInfo(id);
+        }
+      });
+    });
+
+    // 点击拍摄按钮
+    $('.j-take-photo').on('click', function () {
+      isUpload = false;
+      $('.j-no-face-info').hide();
+      $('.j-preview-face, .j-return-takephoto').show();
+      $('.j-student-face-preview').css('display', 'flex');
+      canvasContext.drawImage(video, 0, 0, video.width, video.height);
+      // mediaStreamTrack && mediaStreamTrack.stop();
+
+      $('#photoSource').cropper('replace', canvas.toDataURL("image/png"), false);//默认false，适应高度，不失真
+      $(this).hide();
+      $('.j-take-photo-again, .j-submit-photo').show();
+      $('.j-take-photo, .j-upload-photo, .j-upload-photo-again').hide();
+      // $(video).hide();
+    });
+    // 点击上传按钮
+    $('.j-upload-photo, .j-upload-photo-again').on('click', function () {
+      isUpload = true;
+      $("#uploadPhoto").trigger('click');
+    });
+    $("#uploadPhoto").on('change', function () {
+      let base64, file = $(this)[0].files[0];
+      let reader = new FileReader();
+      reader.addEventListener('load', function () {
+        if (reader.result.length / 1024 < 1024) {
+          $(".j-student-face-preview").css('display', 'flex');
+          $(".j-preview-face").html(`<img src="${reader.result}">`).show();
+          $(".j-return-takephoto, .j-upload-photo-again, .j-submit-photo").show();
+          $(".j-take-photo, .j-take-photo-again, .j-upload-photo, .j-no-face-info").hide();
+        } else {
+          layer.alert("图片太大，请重新上传！");
+        }
+      }, false);
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+    // 点击返回按钮
+    $('.j-return-takephoto').on('click', function(){
+      $('.j-take-photo-again').trigger('click');
+      $('.j-take-photo, .j-upload-photo').show();
+      $('.j-return-takephoto, .j-take-photo-again, .j-upload-photo-again, .j-submit-photo').hide();
+      if ($('.j-student-face-info > div').length != 0) {
+        $('.j-student-face-preview').hide();
+      } else {
+        $('.j-student-face-preview').css('display','flex');
+        $('.j-no-face-info').show();
+        $('.j-preview-face').hide();
+      }
+    });
+    // 点击重新拍摄
+    $('.j-take-photo-again').on('click', function () {
+      clearCropper();
+      // $(video).show();
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+      // getUserMedia();
+      $('.j-preview-face').html('')
+      $('.j-take-photo').show();
+      $('.j-return-takephoto, .j-submit-photo').hide();
+      if ($('.j-student-face-info > div').length != 0) {
+        $('.j-student-face-preview').hide();
+      } else {
+        $('.j-student-face-preview').css('display', 'flex');
+        $('.j-no-face-info').show();
+        $('.j-preview-face').hide();
+      }
+      $(this).hide();
+    });
+    // 提交
+    $('.j-submit-photo').on('click', function () {
+      let cutPhotoBase64;
+      if (isUpload) {
+        cutPhotoBase64 = $('.j-preview-face>img').attr('src');
+      } else {
+        let canvasCutPhoto = $('#photoSource').cropper('getCroppedCanvas');
+        cutPhotoBase64 = !!canvasCutPhoto && canvasCutPhoto.toDataURL('image/png');
+      }
+
+      let formData = new FormData();
+      formData.append('access_token', access_token);
+      formData.append('encryptionCardMyId', $('.j-student-info-title').attr('data-id'));
+      formData.append('imgPic', cutPhotoBase64);
+      loadingIndex = loading_layer();
+      $.ajax({
+        url: `${path}cardsMyFace/insert`,
+        type: 'post',
+        data: formData,
+        contentType: false, //禁止设置请求类型
+        processData: false,
+        error: function(err){
+          layer.close(loadingIndex);
+          // layer.msg('服务器异常')
+        },
+        success: function (res) {
+          layer.close(loadingIndex);
+          let code = res.code, data = res.data; //-1:未登入 0:成功 >0: 错误
+          if (code == 0) {
+            layer.open({
+              title: '提交',
+              btn: [],
+              area: ['345px', '320px'],
+              cancel: function (index) {
+                layer.close(index);
+                clearCropper();
+                canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+                $(".j-preview-face > img").remove();
+                // getUserMedia();
+              },
+              success: function (layero, index) {
+                setTimeout(function () {
+                  layer.close(index);
+                  clearCropper();
+                  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                }, 1500);
+              },
+              content: `<div style="text-align: center;">
+                <img src="/src/style/ai_face/img/circle-color-person.png">
+                <p style="padding-top:20px;color: #333; font-size: 20px;">提交成功</p></div>`
+            });
+            // 将当前上传成功的头像添加到人脸列表
+            $('.j-student-face-info').css('display', 'flex').append(`<div class="face-img-wrap">
+                  <img src="${data.imgPic}" data-faceId="${data.encryptionId}">
+                  <i class="icon-btn-close" data-faceId="${data.encryptionId}"></i>
+                </div>`);
+            // 有3张头像时，显示提示信息
+            // 【拍摄】 【提交】
+            if ($('.j-student-face-info > div').length === 3) {
+              $('.j-notice').show();
+              $(".j-take-photo, .j-upload-photo").attr("disabled", "disabled").show();
+            } else {
+              $('.j-take-photo, .j-upload-photo').show();
+            }
+            $('.j-student-face-preview, .j-return-takephoto, .j-take-photo-again, .j-submit-photo, .j-upload-photo-again').hide();
+          } else if (code > 0) {
+            let btnTxt = isUpload ? '重新上传' : "重新拍摄"
+            layer.open({
+              title: '提交失败',
+              btn: [btnTxt],
+              btnAlign: 'c',
+              area: ['744px', '495px'],
+              content: `<div class="face-upload-tip">照片质量不高，会影响签到，建议重新拍摄！</div>
+                <div class="face-upload-fail-reason">
+                  <div class="item-reason"><img src="/src/style/ai_face/img/biaozhun.png"><p>标准拍摄</p></div>
+                  <div class="item-reason"><img src="/src/style/ai_face/img/zhedang.png"><p>遮挡脸部</p></div>
+                  <div class="item-reason"><img src="/src/style/ai_face/img/duoge.png"><p>多个人脸</p></div>
+                  <div class="item-reason"><img src="/src/style/ai_face/img/guangxian.png"><p>光线不足</p></div>
+                </div>`,
+              success: function(layero, index) {
+                $(`#layui-layer${index}`).addClass("face-dialog");
+              },
+              yes: function (index) {
+                layer.close(index);
+                if (isUpload) {
+                  $("#uploadPhoto").trigger('click');
+                } else {
+                  $('.j-take-photo-again').trigger('click');
+                }
+              }
+            })
+          }
+        }
+      });
+    });
+
+    // 删除人脸
+    $('.j-student-face-info').on('click', 'i', function (e) {
+      layer.alert('确认删除这张照片吗？', function(index){
+        layer.close(index);
+        let encryptionId = $(e.target).attr('data-faceId'),
+          $img = $(e.target).closest('div');
+        loadingIndex = loading_layer();
+        $.ajax({
+          type: 'post',
+          url: `${path}cardsMyFace/delete`,
+          data: {
+            encryptionId: encryptionId,
+            access_token
+          },
+          success: function (res) {
+            layer.close(loadingIndex);
+            if (res.code === 0) {
+              $img.remove();
+              $('.j-notice').hide();
+              $(".j-take-photo, .j-upload-photo").removeAttr("disabled");
+              if ($('.j-student-face-info > div').length === 0) {
+                $('.j-student-face-info, .j-preview-face').hide();
+                $('.j-student-face-preview').css('display', 'flex');
+                $('.j-no-face-info').show();
+              }
+            } else {
+              layer.msg(res.msg);
+            }
+          }
+        });
+      });
+    });
+    // 选择学员，请求学员详细信息
+    $('.j-match-user-result').on('click', 'li', function (e) {
+      $('.j-user-search').val('');
+      $('.j-match-user-result').hide();
+      $('.j-take-photo-again, .j-upload-photo-again').hide();
+      // $('.j-take-photo-again').trigger('click');
+      let encryptionId = $(e.target).closest('li').attr('data-id');
+      if (encryptionId) {
+        $('.j-panel-match-student').show();
+        getStudentDetailInfo(encryptionId);
+      } else {
+        $('.j-panel-match-student').hide();
+        $('.j-no-choice-student').css('display', 'flex');
+      }
+    });
+
+    // 搜索签到学员
+    $('.j-btn-search-sign').on('click', function (e) {
+      $('.j-stop-sign').trigger('click');
+      $('.j-record-list, .j-waiting-sign').hide();
+      $('j-search-record-list').show();
+      e.preventDefault();
+      resetSearchParams();
+      // paramSignPage = 1;
+      // noMoreRecord = false;
+      // timeEndLongSign = null;
+      isSearchByClick = true;
+      getSignList();
+    });
+    $(".j-search-record-list").on('scroll', function (e) {
+      let height = $(this).height(),
+        scrollTop = $(this).scrollTop(),
+        contentHeight = $(this)[0].scrollHeight;
+      if ((height + scrollTop) > (contentHeight - 250)) {
+        if (!noMoreRecord && !signRecordRequesting) {
+          ++paramSignPage;
+          getSignList();
+        }
+      }
+    });
+    // 点击人脸考勤签到
+    $('.j-tab-face-sign').on('click', function () {
+      if ($(this).hasClass('active')) return;
+      $('.j-panel-collect,.j-layer-detect-camera').hide();
+      $('.j-panel-sign').show();
+      // $(".j-begin-sign").trigger('click');
+      $('.j-stop-sign').trigger('click');
+    });
+    // 开始签到，调用摄像头
+    $('.j-begin-sign').on('click', () => {
+      $('.j-layer-before-sign, #showPhoto, .j-waiting-sign,.j-signlist-nodata').hide();
+      $('.j-layer-detect-camera').css('display', 'flex');
+      if (isSearchByClick){
+        resetSearchParams();
+        isSearchByClick = false;  //是否点击搜索
+
+        // 签到请求成功，恢复默认搜索条件
+        $('#searchDate').val(formDate(new Date()));
+        $('#searchStatus, #searchKey').val("");
+        form.render('select');
+
+        getSignList().then(function(){
+          getUserMedia(trackFace);
+        })
+      } else {
+        getUserMedia(trackFace);
+      }
+    });
+    // 结束签到
+    $('.j-stop-sign').on("click", function () {
+      recoverSignListStyle();
+      $('.j-layer-camera, .j-btn-group-sign').hide();
+      $('.j-layer-before-sign').css('display', 'flex');
+      trackTaskStop();
+      console.log('mediaStreamTrack:', mediaStreamTrack);
+      console.log('tracking.mediaStreamTrack:', tracking.mediaStreamTrack);
+      mediaStreamTrack && mediaStreamTrack.stop();
+      mediaStreamTrack = null;
+      tracking.mediaStreamTrack && tracking.mediaStreamTrack.stop();
+      tracking.mediaStreamTrack = null;
+      trackTask = null;
+      tracker = null;
+    });
+    // 放大签到图片
+    $(".j-record-list, .j-search-record-list, .j-student-face-info").on("click", 'img', function (e) {
+      
+      trackTaskStop();
+      showBigImg(e);
+      
+    });
+    // 关闭大图
+    $("body").on('click', '.j-sign-img-close', function () {
+      $('.j-sign-img-wrap').remove();
+      taskTimer = setTimeout(function() {
+        if ($('.j-panel-collect').is(":hidden")){
+          trackTask && trackTask.run();
+        }
+      }, 3000);
+    });
+
+    $('.j-row-tab').on('click', 'li', function (e) {
+      $('.j-waiting').html('正在检测摄像头，请稍等...');
+
+      $('.j-row-tab .active').removeClass('active');
+      $(e.target).addClass('active');
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    })
+    $('#photoSource').cropper({
+      aspectRatio: 1 / 1,
+      preview: '.j-preview-face',
+      guides: false,  //裁剪框的虚线(九宫格)
+      autoCropArea: 0.6,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+      movable: false, //是否允许移动图片
+      dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+      movable: true,  //是否允许移动剪裁框
+      resizable: true,  //是否允许改变裁剪框的大小
+      zoomable: false,  //是否允许缩放图片大小
+      mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+      touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+      rotatable: true,  //是否允许旋转图片
+      crop: function (e) {
+        // 输出结果数据裁剪图像。
+        console.log(e);
+      }
+    });
+    function resetSearchParams() {
+      paramSignPage = 1; //重置页码为初始页码
+      noMoreRecord = false; //没有更多签到记录数据
+      timeEndLongSign = null; //签到记录列表第一页数据返回的时间戳
+    }
+    function trackFaceAgainAfterSign() {
+      if (!$('.j-layer-camera').is(':hidden')) {
+        taskTimer = setTimeout(function () {
+          trackTask.run();
+        }, 3000);
+      }
+    }
+    function trackFace() {
+      setSignListStyle();
+      $('.j-layer-camera, .j-btn-group-sign').show();
+      $('.j-layer-detect-camera').hide();
+      let imgPlaceholder = new Image();
+      if (!tracker) {
+        tracker = new tracking.ObjectTracker('face');
+        tracker.setInitialScale(4);
+        tracker.setStepSize(2);
+        tracker.setEdgesDensity(0.1);
+        trackTask = tracking.track('#videoSignIn', tracker, { camera: true });
+        // mediaStreamTrack = tracking.mediaStreamTrack;
+        tracker.on('track', (event) => {
+          if (doFaceReq ) {
+            // trackTaskStop();
+            return;
+          }
+          canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+          if (!event.data.length) {
+            console.log('画面中没有人脸');
+          } else {
+            let faceCanvas = document.getElementById('canvasFace'),
+              faceContext = faceCanvas.getContext('2d'),
+              formData = new FormData();
+            faceCanvas.width = canvas.width;
+            faceCanvas.height = canvas.height;
+            // let rect = event.data;
+            console.log('rect length:', event.data.length);
+            event.data.forEach((rect, index) => {
+              // canvasContext.strokeStyle = '#5DAFE2';
+              // canvasContext.lineWidth = 5;
+              // canvasContext.strokeRect(rect.x, rect.y, rect.width, rect.height);
+              faceContext.strokeStyle = '#5DAFE2';
+              faceContext.lineWidth = 5;
+              faceContext.strokeRect(rect.x, rect.y, rect.width, rect.height);
+
+              if (index === (event.data.length - 1) ){
+                canvasContext.drawImage(faceCanvas, 0,0);
+                faceCanvas.width = 400;
+                faceCanvas.height = 300;
+                faceContext.drawImage(videoSignIn, 0, 0, 400, 300);
+                // trackTaskStop();
+                imgPlaceholder.src = faceCanvas.toDataURL('image/png');
+              }
+            })
+
+            // 获取人脸照片签到
+            formData.append('access_token', access_token);
+            formData.append('faceImg', faceCanvas.toDataURL('image/png'));
+
+            // 人脸签到请求
+            doFaceReq = true;
+            loadingIndex = layer.msg('正在签到，请稍候', { icon: 16, shade: 0.15, time: 9999 * 1000 });
+            $.ajax({
+              type: 'post',
+              url: `${path}courseInfoSignLog/signCourse`,
+              data: formData,
+              contentType: false, //禁止设置请求类型
+              processData: false,
+              error: function(err){
+                doFaceReq = false;
+                layer.close(loadingIndex);
+              },
+              complete: function(xhr, ts) {
+                loadingIndex && layer.close(loadingIndex);
+                if (xhr.status >= 500) {
+                  layer.msg('网络崩溃了', function(){
+                    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                    trackFaceAgainAfterSign();
+                  })
+                }
+              },
+              success: function (res) {
+                layer.close(loadingIndex);
+                if ($('.j-panel-sign').is(':hidden')) return;
+                if (res.code == 500 ){
+                  layer.msg(res.msg, function(){
+                    doFaceReq = false;
+                    taskTimer = setTimeout(function () {
+                      trackTask.run();
+                    }, 1000);
+                  });
+                  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+                  return;
+                }
+                let mulitCourse = JSON.parse(res.remark),
+                  remarks = JSON.parse(res.remark2),
+                  signToken = remarks.signToken,
+                  total = remarks;
+
+                let tpl = signListTpl.innerHTML;
+                if (mulitCourse) {
+                  let area,
+                    $docHeight = $(document).height(),
+                    $docWidth = $(document).width();
+                  if (getScreenSize() === 'lg') {
+                    area = ['1082px', '710px'];
+                    if ($docHeight < 790) {
+                      area[1] = ($docHeight - 80) + 'px';
+                    }
+                    if ($docWidth < 1162) {
+                      area[0] = ($docWidth - 80) + 'px';
+                    }
+                  } else {
+                    area = ['900px', '600px'];
+                    if ($docHeight < 680) {
+                      area[1] = ($docHeight - 80) + 'px';
+                    }
+                    if ($docWidth < 980) {
+                      area[0] = ($docWidth - 80) + 'px';
+                    }
+                  }
+                  
+                  let tableLayerIndex = layer.open({
+                    type: 1,
+                    title: '签到提醒',
+                    area,
+                    btn: ['批量签到', '取消'],
+                    btnAlign: 'c',
+                    cancel: (index) => {
+                      doFaceReq = false;
+                      layer.close(index);
+                      // canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                      trackFaceAgainAfterSign();
+                    },
+                    btn2: (index) => {
+                      doFaceReq = false;
+                      layer.close(index);
+                      // canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                      trackFaceAgainAfterSign();
+                    },
+                    yes: (index, layero) => {
+                      // 点击批量签到按钮回调
+                      let checkStatus = table.checkStatus('multiCourseTable'), ids;
+
+                      if (checkStatus.data.length === 0) {
+                        layer.msg("请选择签到课节");
+                      } else {
+                        checkStatus.data.forEach(item => {
+                          if (!ids) {
+                            ids = item.encryptionId
+                          } else {
+                            ids += `,${item.encryptionId}`;
+                          }
+                        });
+                        // 批量签到回调
+                        loadingIndex = loading_layer();
+                        $.ajax({
+                          type: 'post',
+                          url: `${path}courseInfoSignLog/signMutilCourses`,
+                          data: {
+                            courseInfoIds: ids,// 批量签到课程id：encryptionId
+                            signToken,
+                            access_token
+                          },
+                          success: function (res) {
+                            // TODO: audio
+                            doFaceReq = false;
+                            layer.close(loadingIndex);
+                            layer.close(index);
+                            let signStudents = res.data.map((item) => {
+                              item['locationStr'] = JSON.stringify(item.location);
+                              item['time'] = formatTime(String(item.createTime));
+                              item['desc'] = formatAllDesc(item);
+                              if (item.status === 1) {
+                                ++playList;
+                                palySignAudio();
+                              }
+                              return item;
+                            });
+                            laytpl(tpl).render(signStudents, (html) => {
+                              // $(".j-search-record-list").hide();
+                              $('.j-search-record-list').prepend(html).show().scrollTop(0).find('li').each(function(index){
+                                if (index < checkStatus.data.length) {
+                                  $(this).addClass('layui-anim-scaleSpring layui-anim');
+                                }
+                              });
+                              setTimeout(function () {
+                                $('.j-search-record-list .layui-anim-scaleSpring.layui-anim').removeClass('layui-anim-scaleSpring layui-anim');
+                              }, 400)
+
+                              $(".j-total-data").html(`共<span class="warning">${+total.failCount + +total.successCount}</span>条签到信息，
+                                  其中<span class="success">${total.successCount}</span>条签到成功，
+                                  <span class="fail">${total.failCount}</span>条签到失败`);
+                              if (!$('.j-layer-camera').is(':hidden')) {
+                                taskTimer = setTimeout(function () {
+                                  trackTask.run();
+                                }, 3000);
+                              }
+                            });
+                          }
+                        });
+                      }
+                    },
+                    success: function () {
+                      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                      // let width;
+                      // if ($(document).width() < 900) {
+                      //   width = $(document).width() - 112;
+                      // }
+                      let height;
+                      if (mulitCourse.length > 0) {
+                        height = 38 * mulitCourse.length + 43;
+                      }
+                      table.init('multiCourseTable', {
+                        width: 900,
+                        // page: true,
+                        limit: 10000,
+                        height //设置高度 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+                        , data: mulitCourse//支持所有基础参数
+                      });
+                    },
+                    content: `<div class="course-table" id="courseTable">
+                        <p>请选择本次要签到的课节：</p>
+                        <table id="multiCourseTable" lay-filter="multiCourseTable">
+                          <thead>
+                            <tr>
+                              <th lay-data="{field:'encryptionId', type: 'checkbox'}"></th>
+                              <th lay-data="{field:'relName'}">姓名</th>
+                              <th lay-data="{field:'telphoneNum'}">手机号</th>
+                              <th lay-data="{field:'cardCode'}">卡号</th>
+                              <th lay-data="{field:'teacherName'}">上课老师</th>
+                              <th lay-data="{field:'classDate',width: 190}">上课时间</th>
+                              <th lay-data="{field:'courseName'}">课程</th>
+                              <th lay-data="{field:'courseCustomName'}">课节主题</th>
+                              <th lay-data="{field:'cycleName'}">所在班级</th>
+                            </tr> 
+                          </thead>
+                          <tbody id="multiCourseTbody"></tbody>
+                        </table>
+                      </div>`
+                  });
+                } else {
+                  // TODO: audio
+                  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+                  let signStudents = res.data.map((item) => {
+                    item['locationStr'] = JSON.stringify(item.location);
+                    item['time'] = formatTime(String(item.createTime));
+                    item['desc'] = formatAllDesc(item);
+                    if (item.status === 1) {
+                      ++playList;
+                      palySignAudio();
+                    }
+                    return item;
+                  });
+                  let desc;
+                  laytpl(tpl).render(signStudents, (html) => {
+                    // $(".j-search-record-list").hide();
+                    $('.j-search-record-list').prepend(html).show().scrollTop(0).find('li:first-child').addClass('layui-anim-scaleSpring layui-anim');
+                    $(".j-total-data").html(`共<span class="warning">${+total.failCount + +total.successCount}</span>条签到信息，
+                        其中<span class="success">${total.successCount}</span>条签到成功，
+                        <span class="fail">${total.failCount}</span>条签到失败`);
+                    setTimeout(function(){
+                      $('.j-search-record-list .layui-anim-scaleSpring.layui-anim').removeClass('layui-anim-scaleSpring layui-anim');
+                    },400)
+                    doFaceReq = false;
+                    trackFaceAgainAfterSign();
+                  });
+                }
+              }
+            });
+          }
+        });
+      } else {
+        trackTask.run();
+      }
+
+      imgPlaceholder.addEventListener('load', () => {
+        trackTaskStop();
+      });
+    }
+    $.ajaxSetup({
+      complete: function(xhr, ts){
+        if (xhr.status >= 500) {
+          layer.msg('网络崩溃了')
+        }
+        if (loadingIndex) {
+          layer.close(loadingIndex);
+        }
+      }
+    })
+    function palySignAudio() {
+      let audio = document.getElementById('audio');
+      if (audio.readyState === 4 && audio.paused) {
+          audio.play();
+      }
+      audio.addEventListener('ended', function(){
+        --playList;
+        if (playList > 0) {
+          audio.play();
+        }
+      })
+    }
+    function getUsers() {
+      admin.req({
+        url: `${path}cardsMyFace/cardUsers`,
+        type: 'post',
+        data: {
+          // key: '1',
+          timeEndLong: timeEndLongUser,
+          page: paramUsersPage++,
+          limit: 20,
+          access_token
+        },
+        done: (res) => {
+          if (!users || users.length === 0) {
+            users = res.data;
+          } else {
+            users = users.concat(res.data);
+          }
+          if (users.length < res.count) {
+            getUsers();
+          } else {
+            timeEndLongUser = res.remark;
+          }
+        },
+        error: (err) => {
+        }
+      })
+    }
+    function getSignList() {
+      signRecordRequesting = true;
+      let formArray = $('form').serializeArray(),
+        formData = { page: paramSignPage, access_token, timeEndLong: timeEndLongSign };
+      formArray.forEach((item) => {
+        formData[item.name] = item.value || "";
+      });
+      // 签到记录列表请求
+      return new Promise(function(resolve, reject) {
+        loadingIndex = loading_layer();
+        $.ajax({
+          type: 'post',
+          url: `${path}courseInfoSignLog/signList`,
+          data: formData,
+          error: function () {
+            layer.close(loadingIndex);
+            reject();
+          },
+          success: function (res) {
+            layer.close(loadingIndex);
+            signRecordRequesting = false;
+            // let total = JSON.parse(res.remark2);
+            let currentNum = paramSignPage,
+              remarks = JSON.parse(res.remark2),
+              total = remarks;
+            if (paramSignPage === 1) {
+              timeEndLongSign = remarks.timeEndLong;
+            }
+            if ((paramSignPage * 15) >= res.count) {
+              noMoreRecord = true;
+            }
+            let records = res.data.map((item) => {
+              item['locationStr'] = JSON.stringify(item.location);
+              item['time'] = formatTime(String(item.createTime));
+              item['desc'] = formatAllDesc(item);
+              return item;
+            });
+            if (records.length > 0) {
+              $('.j-waiting-sign, .j-signlist-nodata').hide();
+              let tpl = signListTpl.innerHTML;
+              laytpl(tpl).render(records, (html) => {
+                if (paramSignPage === 1) {
+                  $('.j-search-record-list').html(html).show();
+                  // $(".j-total-data").html(`共<span class="warning">${res.count}</span>条数据`);
+
+                  if ($('#searchStatus').val() === "" && $('#searchKey').val() === "") {
+                    $(".j-total-data").html(`共<span class="warning">${+total.failCount + +total.successCount}</span>条签到信息，
+                  <span class="success">${total.successCount}</span>条签到成功，
+                  <span class="fail">${total.failCount}</span>条签到失败`);
+                  } else {
+                    $(".j-total-data").html(`共<span class="warning">${res.count}</span>条数据`);
+                  }
+                } else {
+                  $('.j-search-record-list').append(html);
+                }
+              });
+            } else {
+              if (isSearchByClick) {
+                $('.j-search-record-list, .j-total-data').html('');
+                $('.j-signlist-nodata').show();
+              } else {
+                $('.j-waiting-sign').show();
+              }
+            }
+            resolve();
+          }
+        });
+      });
+    }
+    function getStudentDetailInfo(id) {
+      loadingIndex = loading_layer();
+      $.ajax({
+        type: 'post',
+        url: `${path}cardsMyFace/faceList`,
+        data: {
+          encryptionCardMyId: id,
+          key: '1',
+          access_token
+        },
+        success: function (res) {
+          layer.close(loadingIndex);
+          if (res.code != 0) return ;
+          // url中是否有id，页面初次进入会请求用户数据，请求成功且有id显示信息
+          if (parseUrlGetValue("encryptionCardMyId")) {
+            $('.j-no-choice-student').hide();
+            $('.j-panel-match-student').show();
+          }
+          let userInfo = JSON.parse(res.remark),
+            faceList = res.data,
+            $studentFaceInfo = $('.j-student-face-info'),
+            $noFaceInfo = $('.j-no-face-info'),
+            $studentFacePreview = $('.j-student-face-preview');
+          $('.j-student-info-title')
+            .attr('data-id', userInfo.encryptionId)
+            .html(`<span class="name">${userInfo.userRealName}</span>
+                     <span class="number">${userInfo.userTelNum}</span>`);
+          if (!faceList.length) {
+            // 未采集人脸信息
+            $studentFaceInfo.html('').hide();
+            $studentFacePreview.show();
+            $noFaceInfo.show();
+            $(".j-preview-face").hide()
+            // 【拍摄】【上传】
+            $(".j-take-photo, .j-upload-photo").show().removeAttr("disabled");
+            $(".j-notice").hide();
+            $(".j-take-photo-agin, .j-upload-photo-again, .j-submit-photo").hide();
+          } else {
+            let imgTags = '';
+            faceList.forEach((item) => {
+              imgTags += `<div class="face-img-wrap">
+                  <img src="${item.imgPic}?x-oss-process=image/resize,m_fill,h_90,w_90" data-faceId="${item.encryptionId}">
+                  <i class="icon-btn-close" data-faceId="${item.encryptionId}"></i>
+                </div>`
+            });
+            $studentFaceInfo.html(imgTags).css('display', 'flex');
+            $studentFacePreview.hide();
+            $noFaceInfo.hide();
+            if (faceList.length === 3) {
+              $(".j-take-photo, .j-upload-photo").attr('disabled', 'disabled').show(); //拍摄 上传
+              $(".j-notice").show();
+            } else {
+              $(".j-take-photo, .j-upload-photo").removeAttr("disabled").show(); //拍摄 上传
+              $(".j-notice").hide();
+            }
+            $(".j-take-photo-agin, .j-upload-photo-again, .j-submit-photo").hide(); //
+          }
+        }
+      });
+    }
+    } else {
+      layer.alert('您没有当前页面的操作权限', {
+        cancel: function(index){
+          layer.close(index);
+          window.open("about:blank", "_self").close()
+
+          // window.close();
+          // window.open("", "_self").close();
+          // if (layui.router().search.faceOpen) {
+          //   window.close();
+          // } else {
+          //   window.open("about:blank", "_self").close()
+          // }
+        }
+      },function (index) {
+        layer.close(index);
+        window.open("about:blank", "_self").close()
+
+        // window.close();
+        // window.open("", "_self").close();
+        // if (layui.router().search.faceOpen) {
+        //   window.close();
+        // } else {
+        //   window.open("about:blank", "_self").close()
+        // }
+      })
+    }
+    common_face_analysis.init(function () {
+    });
+  });
+  function formatAllDesc(item) {
+    let desc = '';
+    if (item.status === 0) {
+      desc = formatDesc(item.msgCode, item.signMessage) || item.signMessage;
+    }
+    if (item.courseName) {
+      if (item.courseCustomName) {
+        desc += `课程：${item.courseCustomName}(${item.courseName})`
+      } else {
+        desc += `课程：${item.courseName}`
+      }
+    }
+    return desc;
+  }
+  function showBigImg(e) {
+    if (new RegExp('/src/style/ai_face').test(e.target.src)) return;
+    let location = $(e.target).attr("data-location");
+    location = location && JSON.parse(location);
+    $('body').append(`<div class="sign-img-wrap j-sign-img-wrap">
+          <div class="sign-img-box">
+            <img class="sign-img-close j-sign-img-close" src="/src/style/ai_face/img/close.png" alt="">
+            <canvas id="signBigImgCanvas">
+          </div></div>`);
+
+    let signBigImgCanvas = document.getElementById('signBigImgCanvas'),
+      signBigImgContext = signBigImgCanvas.getContext('2d');
+
+    let bigImgSource = new Image();
+    if (/\?/.test(e.target.src)){
+      bigImgSource.src = e.target.src.split('?')[0];
+      bigImgSource.onload = function() {
+        drawImage(bigImgSource);
+      }
+      bigImgSource.onerror = function() {
+        layer.msg('网络或服务器崩溃了，图片加载失败！');
+        $('.j-sign-img-close').trigger('click');
+      }
+    } else {
+      bigImgSource.src = e.target.src
+      drawImage(bigImgSource);
+    }
+    function drawImage(bigImgSource) {
+      let imgWidth = bigImgSource.width,
+        imgHeight = bigImgSource.height,
+        screenHeight = $(document).height();
+
+      if ((imgHeight + 60) > screenHeight) {
+        signBigImgCanvas.width = (screenHeight - 200) * imgWidth / imgHeight;
+        signBigImgCanvas.height = screenHeight - 200;
+      } else {
+        signBigImgCanvas.width = bigImgSource.width;
+        signBigImgCanvas.height = bigImgSource.height;
+      }
+
+
+      signBigImgContext.drawImage(bigImgSource, 0, 0, signBigImgCanvas.width, signBigImgCanvas.height);
+      signBigImgContext.strokeStyle = '#5DAFE2';
+      signBigImgContext.lineWidth = 5;
+      location && signBigImgContext.strokeRect(location.left, location.top, location.width, location.height);
+    }
+  }
+  
+  function getUserMedia(successCallback, errorCallback) {
+    console.log(mediaStreamTrack);
+    if (mediaStreamTrack) {
+      $('.j-layer-detect-camera').hide();
+      if (successCallback) successCallback();
+      return;
+    }
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+          $('.j-layer-camera').show();
+          $('.j-layer-detect-camera').hide();
+          // let contextFace = canvas.getContext('2d'),
+          // mediaStreamTrack;
+          //将视频流设置为video元素的源
+          getT = stream.getTracks();
+          mediaStreamTrack = stream.getTracks()[0];
+          video.srcObject = stream;
+          // video.play();
+          // setTimeout(function(){
+          //   mediaStreamTrack.stop();
+          // },2000);
+          if (successCallback) successCallback();
+        })
+        .catch((err) => {
+          $('#layui-layer-enter-collect').remove();
+          let excMap = {
+            PermissionDeniedError: '您拒绝了摄像头的使用权限，如需启用请在浏览器设置中打开',
+            AbortError: '摄像头被中止',
+            NotAllowedError: '摄像头被拒绝',
+            NotFoundError: '找不到摄像头',
+            NotReadableError: '无法读取摄像头',
+            OverConstrainedError: '摄像头无法满足要求'
+          }
+          if (excMap[err.name]) {
+            layer.alert(excMap[err.name], function (index) {
+              layer.close(index);
+              if (errorCallback) errorCallback();
+            });
+          } else {
+            if (errorCallback) errorCallback();
+          }
+          $('.j-waiting').html('摄像头启动失败！');
+
+          console.log(err.name + ": " + err.message);
+        });
+    }
+  }
+  function formDate(date) {
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? '0' + m : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    return y + '-' + m + '-' + d;
+  }
+  function formatTime(time) {
+    return `${time.substr(0, 4)}-${time.substr(4, 2)}-${time.substr(6, 2)} ${time.substr(8, 2)}:${time.substr(10, 2)}:${time.substr(12, 2)}`;
+  }
+  function formatDesc(code, msg) {
+    let msgCodeMap = {
+      SUCCESS: "签到成功",
+      NOT_KNOW: "未识别人脸",
+      NOT_KNOW_CARD: "学员人脸未采集或需要调整角度",
+      NO_COURSE: "今日无排课",
+      NO_COURSE_LEAVE: "今日无排课,该课已请假",
+      NO_RESOURSE: "学员套餐剩余次数不足或未绑定课程",
+      FAIL_NO_REASON: "签到失败，原因未知"
+    }
+
+    if (code === 'FAIL_NO_REASON') {
+      return msg ? msg : '签到失败';
+    } else {
+      return msgCodeMap[code];
+    }
+  }
+  function clearCropper() {
+    $('#photoSource').cropper('clear');
+    $('#showPhoto>div').remove();
+  }
+  function trackTaskStop() {
+    // console.log("taskTimer:", taskTimer, 'trackTask:', trackTask);
+    taskTimer && clearTimeout(taskTimer);
+    trackTask && trackTask.stop();
+  }
+  function parseUrlGetValue(key) {
+    let url = location.href;
+    if (new RegExp(key).test(url)) {
+      let valueStr = url.split(`${key}=`)[1];
+      return valueStr.split('/')[0];
+    } else {
+      return false;
+    }
+  }
+  function recoverSignListStyle(){
+    $('.j-total-data, .j-search-record-list').removeAttr('style');
+  }
+  function setSignListStyle() {
+    let map = {
+      md: () => {
+        $(".j-total-data").css('bottom', '70px');
+        $('.j-search-record-list').css('max-height', '160px');
+      },
+      lg: () => {
+        $(".j-total-data").css('bottom', '70px');
+        $('.j-search-record-list').css('max-height', '405px');
+      }
+    }
+    map[getScreenSize()]();
+  }
+  function getScreenSize(){
+    let width = $(document).width();
+    if( width < 1350 ) {
+      return 'md';
+    } else {
+      return 'lg';
+    }
+  }
+</script>
+
+<script type="text/html" id="signListTpl">
+{{#  layui.each(d, function(index, item){ }}
+  <li class="">
+    <div class="img-box">
+      <img src="{{item.faceImg}}?x-oss-process=image/resize,m_fill,h_40,w_40" alt="" data-location='{{item.locationStr || ""}}'>
+    </div>
+    <div class="right-box">
+      <div class="item-content">
+        <div class="info">
+          {{#  if(item.status == 2) { }} 
+            <strong class="name">{{item.relName}}（已撤销）</strong>
+          {{#  } else { }}
+            <strong class="name">{{item.relName||'识别失败'}}</strong>
+          {{#  } }}
+          <span class="time">{{item.time}}</span>
+        </div>
+        <div class="item-status">
+          {{#  if(item.status == 0) { }} 
+          <img src="/src/style/ai_face/img/circle-error.png" alt="">
+          {{#  } else if(item.status == 1){ }}
+          <img src="/src/style/ai_face/img/circle-success.png" alt="">
+          {{#  } }}
+        </div>
+      </div>
+      <p class="item-desc" title="{{item.desc}}">{{item.desc}}</p>
+    </div>
+  </li>
+{{#  }); }}
+</script>
