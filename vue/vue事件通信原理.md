@@ -70,13 +70,16 @@ function eventsMixin(Vue) {
     Vue.prototype.$once = function (event, fn) {
         var vm = this;
         function on() {
+            /** 调用on方法就移除，实现监听一次就移除监听*/
             vm.$off(event, on);
             fn.apply(vm, arguments);
         }
+        /** 将fn方法挂在on的fn属性上，是为了移除监听时，能查找到需要移除的fn方法。*/
         on.fn = fn;
         vm.$on(event, on);
         return vm;
     };
+    /** 移除监听方法 */
     Vue.prototype.$off = function (event, fn) {
         var vm = this;
         // all
@@ -84,7 +87,7 @@ function eventsMixin(Vue) {
             vm._events = Object.create(null);
             return vm;
         }
-        // array of events
+        // array of events 移除多个事件的监听
         if (isArray(event)) {
             for (var i_1 = 0, l = event.length; i_1 < l; i_1++) {
                 vm.$off(event[i_1], fn);
@@ -96,6 +99,7 @@ function eventsMixin(Vue) {
         if (!cbs) {
             return vm;
         }
+        // 移除具体事件的所有监听
         if (!fn) {
             vm._events[event] = null;
             return vm;
@@ -126,14 +130,37 @@ function eventsMixin(Vue) {
         }
         var cbs = vm._events[event];
         if (cbs) {
+            /** 
+            toArray:  将类数组对象转成真正的数组
+            */
             cbs = cbs.length > 1 ? toArray(cbs) : cbs;
             var args = toArray(arguments, 1);
             var info = "event handler for \"".concat(event, "\"");
             for (var i = 0, l = cbs.length; i < l; i++) {
+                 /**
+                 invokeWithErrorHandling方法核心代码：
+                 传入参数调用事件监听的回调方法
+                 args ? cbs[i].apply(vm, args) : cbs[i].call(vm);
+                */
                 invokeWithErrorHandling(cbs[i], vm, args, vm, info);
+               
             }
         }
         return vm;
     };
+}
+function invokeWithErrorHandling(handler, context, args, vm, info) {
+  var res;
+  try {
+      res = args ? handler.apply(context, args) : handler.call(context);
+      if (res && !res._isVue && isPromise(res) && !res._handled) {
+          res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
+          res._handled = true;
+      }
+  }
+  catch (e) {
+      handleError(e, vm, info);
+  }
+  return res;
 }
 ```
